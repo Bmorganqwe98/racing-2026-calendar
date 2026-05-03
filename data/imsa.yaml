@@ -1,0 +1,22 @@
+# IMSA WeatherTech SportsCar Championship — 2026 schedule (STUB DATA; replace during research phase)
+# Source: not yet populated — see NOTES.md for retrieval log
+series: IMSA SportsCar Championship
+slug: imsa
+calendar_name: IMSA 2026
+description: IMSA WeatherTech SportsCar Championship 2026 (all sessions in track-local time)
+timezone_default: America/New_York
+
+rounds:
+  - round: 1
+    name: Rolex 24 at Daytona
+    short_name: Rolex 24
+    circuit: Daytona International Speedway
+    location: Daytona Beach, Florida, USA
+    tz: America/New_York
+    sessions:
+      - type: Qualifying
+        start: 2026-01-23T15:30
+        duration_minutes: 60
+      - type: Race
+        start: 2026-01-24T13:40
+        duration_minutes: 1440

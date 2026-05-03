@@ -1,0 +1,41 @@
+---
+description: Document findings and thoughts so new chats have context (AI RAG continuity)
+alwaysApply: true
+---
+
+# Document Findings and Thoughts
+
+**Goal:** Every important discovery, decision, or piece of context should be written down in the project. New chat sessions have no memory of past conversations — documentation is how the AI learns the project.
+
+## What to Document
+
+- **Findings:** What you discovered (e.g., "F1 sprint format for 2026 has 3 sessions, not 4", "icalendar library writes VTIMEZONE blocks automatically when DTSTART;TZID is set").
+- **Decisions:** Why something was done a certain way (e.g., "WRC stages collapsed to per-day events instead of per-stage to keep the calendar readable").
+- **Structure:** How pieces fit together (e.g., "data/<series>.yaml feeds generate.py which writes output/<series>.ics; index.html is generated alongside").
+- **Workflows:** Steps to repeat (e.g., "To update a session time: edit data/<series>.yaml, run python generate.py to preview, push to main to deploy").
+
+## Where to Document
+
+| Content | Location |
+|---------|----------|
+| Series schedule provenance (source URL + retrieval date + TBA gaps) | `NOTES.md` |
+| Project overview, install, subscribe walkthrough | `README.md` |
+| Module purpose and usage | Docstring at top of `generate.py` (or any helper module) |
+| Project-wide patterns | `rules/racing-project-context.mdc` and `README.md` |
+| Decisions or non-obvious tradeoffs | Inline comments in code, or a dated entry in `NOTES.md` |
+| Source attribution per series | `NOTES.md` table with series, source URL, retrieval date, confidence |
+
+## Behavior
+
+1. **After completing work:** Update `NOTES.md` (for data/source changes) or `README.md` (for workflow changes), and add a docstring or comment that explains what was done and how to repeat it.
+2. **When discovering structure:** Note where things live and how they connect.
+3. **When making non-obvious choices:** Briefly record the rationale (e.g., "TBA sessions emit all-day events rather than 12:00 placeholders so subscribers don't see fake times").
+4. **Keep it concise:** A few sentences or bullets — enough for the next AI (or human) to pick up the thread.
+
+## Example
+
+After researching the 2026 WEC calendar:
+- Add a row to `NOTES.md` under the WEC section: source URL, retrieval date, any TBA sessions, confidence (high/medium/low).
+- Update `data/wec.yaml` with the rounds and sessions captured.
+- If a non-obvious choice was made (e.g., merging two practice sessions because the source listed them as one block), record it as a comment in the YAML or a note in `NOTES.md`.
+- When the user opens a new chat and says "refresh WEC schedule", the AI can read `NOTES.md`, see the prior source and date, and decide whether to re-pull or trust the existing data.

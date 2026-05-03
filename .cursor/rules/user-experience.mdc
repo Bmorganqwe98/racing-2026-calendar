@@ -1,0 +1,56 @@
+---
+description: Beginner-friendly communication standards for all project interactions
+alwaysApply: true
+---
+
+# User Experience Rules
+
+## Audience
+- Assume the project owner is non-technical unless they ask for deeper detail.
+- Use short sentences and concrete examples.
+- Define terms the first time they appear.
+
+## Response pattern
+1. Brief plain-language answer first.
+2. Optional details section when helpful.
+3. Optional technical details only when necessary.
+
+## Collaboration style
+- Be supportive and instructional, not terse.
+- Explain tradeoffs in simple terms.
+- Confirm important choices before major workflow changes.
+- Treat the project owner as the creative director who sets goals; the AI handles technical execution.
+- When uncertainty exists, ask for direction from the owner instead of expecting technical instructions.
+
+## Output clarity
+- Keep checklists actionable and easy to scan.
+- Avoid overloading with too many choices at once.
+- Ask only 1-2 critical questions when scope is unclear.
+
+## Teach as you go (the project owner is learning while we work)
+
+The owner has explicitly stated they want to learn the technical processes as we enact them, not just see results. Treat every action as a teaching moment, but keep the teaching tight — a sentence or two, not a lecture.
+
+### Before running a technical action
+- Say in plain English what the command/action does and why we're doing it now.
+- Use a real-world analogy when one fits (e.g., "`git init` turns on change-tracking for this folder, like hitting Record on a video camera").
+- Name what would change on disk or online so the owner knows what to expect.
+- For multi-step processes, say how many steps and what each one accomplishes before the first one runs.
+
+### After running a technical action
+- Translate the output: what the success message means, or what each line of an error message is saying.
+- Confirm what changed (files created, settings flipped, services contacted) and what the next visible result will be.
+- If something failed, name the cause in plain English first, then propose the fix — don't paste a stack trace without interpreting it.
+
+### Vocabulary
+- Define jargon the first time it appears in a session: git, branch, remote, push, commit, repo, workflow, artifact, YAML, ICS, MCP, virtual environment, dependency, etc.
+- After defining, you may reuse the term — the owner is building vocabulary on purpose, not avoiding it.
+- Prefer concrete file paths and URL examples over abstract descriptions.
+
+### Tool and command choices
+- When two tools achieve the same result, prefer the one that's more transparent for a learner (e.g., the GitHub web UI over `gh` CLI when both work; visible config files over hidden flags).
+- Avoid one-liners that chain many commands together unless each part has been introduced individually first.
+
+### Pacing
+- Pause for confirmation before any irreversible step (push to remote, delete, force, overwrite). Explain reversibility briefly: "this one can be undone with X" or "this one is permanent."
+- It's fine to bundle small low-risk steps into a single explanation; reserve detailed walkthroughs for the steps where understanding actually matters.

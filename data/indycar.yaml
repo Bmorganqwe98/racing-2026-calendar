@@ -1,0 +1,28 @@
+# IndyCar Series — 2026 schedule (STUB DATA; replace during research phase)
+# Source: not yet populated — see NOTES.md for retrieval log
+series: IndyCar Series
+slug: indycar
+calendar_name: IndyCar 2026
+description: NTT IndyCar Series 2026 (all sessions in track-local time)
+timezone_default: America/New_York
+
+rounds:
+  - round: 1
+    name: Firestone Grand Prix of St. Petersburg
+    short_name: St. Petersburg GP
+    circuit: Streets of St. Petersburg
+    location: St. Petersburg, Florida, USA
+    tz: America/New_York
+    sessions:
+      - type: Practice 1
+        start: 2026-03-13T11:30
+        duration_minutes: 45
+      - type: Practice 2
+        start: 2026-03-13T15:00
+        duration_minutes: 45
+      - type: Qualifying
+        start: 2026-03-14T12:30
+        duration_minutes: 75
+      - type: Race
+        start: 2026-03-15T12:30
+        duration_minutes: 120

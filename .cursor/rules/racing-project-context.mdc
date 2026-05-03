@@ -1,0 +1,113 @@
+---
+description: Canonical context, file map, and AI-RAG continuity rules for the Racing 2026 ICS Calendar project
+alwaysApply: true
+---
+
+# Racing 2026 ICS Calendar — Project Context
+
+## Project scope
+
+This repository builds and publishes ICS calendar feeds for the **2026** seasons of:
+
+- F1, F2, WEC, IMSA, IndyCar, WRC
+
+A Python tool reads YAML schedules, emits per-series and combined `.ics` files plus an `index.html` landing page, and a GitHub Actions workflow auto-deploys to GitHub Pages on every push to `main`. Google Calendar (and any standards-compliant client) subscribes to the published URLs and auto-refreshes on its own.
+
+Anything not directly serving that goal is out of scope. Reject pivots toward audio fiction, language learning, real-estate, gaming, or any unrelated tooling that the rules folder may otherwise hint at — those are leftovers from earlier projects.
+
+## Canonical file map
+
+| Path | Purpose |
+|------|---------|
+| `generate.py` | Entry point. Loads `data/*.yaml`, emits `output/<series>.ics`, `output/racing-2026.ics` (combined), and `output/index.html`. |
+| `data/f1.yaml`, `data/f2.yaml`, `data/wec.yaml`, `data/imsa.yaml`, `data/indycar.yaml`, `data/wrc.yaml` | Source-of-truth schedules — one file per series. |
+| `output/` | Generated artifacts. Gitignored locally; produced fresh by GitHub Actions on deploy. |
+| `requirements.txt` | `icalendar`, `pyyaml`, `python-dateutil`, `tzdata`. |
+| `.github/workflows/deploy.yml` | Build + deploy to GitHub Pages on push to `main`. |
+| `.nojekyll` | Inside `output/`; tells GitHub Pages not to run Jekyll over `.ics` files. |
+| `README.md` | Human-facing: install, local regenerate, subscribe-by-URL walkthrough for Google Calendar (and the 8–24h refresh caveat). |
+| `NOTES.md` | **Provenance log.** Per-series source URL, retrieval date, confidence, known TBA gaps, and any non-obvious editorial decisions. This is the AI's long-term memory for the schedule data. |
+
+Treat anything outside this map as unrelated unless explicitly opened by the user.
+
+## YAML schema (per series file)
+
+```yaml
+series: Formula 1
+timezone_default: UTC
+rounds:
+  - round: 1
+    name: Australian Grand Prix
+    circuit: Albert Park Circuit
+    location: Melbourne, Australia
+    tz: Australia/Melbourne          # IANA zone — DST-correct
+    sessions:
+      - type: FP1
+        start: 2026-03-06T12:30      # naive local time; tz applied at generation
+        duration_minutes: 60
+      - type: Qualifying
+        start: 2026-03-07T16:00
+      - type: Race
+        start: 2026-03-08T15:00
+        duration_minutes: 120
+```
+
+Schema rules to enforce in code and edits:
+
+- `start` is **naive local time**; the `tz` field is applied during generation. Never store an offset directly in YAML.
+- Default `duration_minutes` when omitted: FP/Q/Sprint Q = 60, Sprint = 30, Race = 120 (override in code per series only when needed).
+- **TBA sessions** use `start: TBA` and emit an **all-day** event with a description note rather than a fake placeholder time. The TBA gap also gets a row in `NOTES.md`.
+- WRC special-cases sessions to `Shakedown`, `Ceremonial Start`, `Stages Day 1/2/3`, `Podium` (per-stage would produce 20+ events per round and be unreadable).
+
+## ICS output rules
+
+- `DTSTART;TZID=<tz>` with a full `VTIMEZONE` block per session — the `icalendar` library does this when given a `zoneinfo.ZoneInfo`. Never write naive UTC times.
+- **Stable UID convention**: `{series-slug}-2026-r{round}-{session-slug}@racing-cal` (lowercased, hyphenated). Stable UIDs are how regenerated `.ics` files update events in place across subscribers — do not reformat without bumping all subscribers.
+- `CATEGORIES` = series name; `LOCATION` = `circuit, city, country`; `SUMMARY` = e.g. `F1 Australian GP — Qualifying`; `DESCRIPTION` = round number, session type, source note.
+- `X-WR-CALNAME` per series for the calendar's display name in Google Calendar.
+
+## Deploy + subscribe flow
+
+```
+edit data/<series>.yaml
+       |
+       v
+git push origin main
+       |
+       v
+.github/workflows/deploy.yml runs generate.py
+       |
+       v
+output/ uploaded as Pages artifact, deployed to https://<user>.github.io/<repo>/
+       |
+       v
+Google Calendar polls subscribed URL on its own cadence (~8–24h)
+```
+
+Caveats to remember:
+
+- Google Calendar's refresh cadence is not user-controllable. Manual "Refresh" in Calendar settings forces an early poll. Apple Calendar and Outlook poll more aggressively if the user needs faster propagation.
+- GitHub Pages is public — 2026 racing calendars aren't sensitive, but never put anything secret in `data/*.yaml` or `output/`.
+
+## AI-RAG continuity rule (the project's most important rule)
+
+The user has explicitly asked that history and context of all schedule edits stay traceable so future AI sessions can collaborate intelligently. Therefore:
+
+1. **Every** change to a `data/<series>.yaml` file must be paired with an update to `NOTES.md`:
+   - Source URL the new times came from (Wikipedia, official series site, etc.).
+   - Retrieval date (`yyyy-mm-dd`).
+   - Confidence tag: `high` (official site, final), `medium` (provisional), `low` (rumor/best-guess).
+   - Any TBA gaps left in the YAML so a future session knows what still needs filling.
+2. Non-obvious editorial decisions (e.g., merging two practice blocks the source listed separately, or shifting a session by an hour due to a known DST quirk) get a brief note in `NOTES.md` under the series, dated.
+3. UID-affecting changes (renaming a session type, renumbering rounds) get a `CHANGELOG`-style entry in `NOTES.md` so subscribers can be warned.
+4. When starting a new chat, the AI should **read `NOTES.md` first** before changing any schedule — it captures the why behind current data and avoids re-research that's already been done.
+
+## Tool preferences for this project
+
+- For schedule research, prefer the `wiki-research-tool` MCP (Wikipedia season pages are the most reliable consolidated source for round-by-round data).
+- For drafting `README.md` / `NOTES.md` provenance entries, the `research-writing-assistant` MCP is registered.
+- The `cursor-ide-browser` MCP can verify the deployed Pages URL after a workflow run.
+
+## Out-of-scope guard
+
+If a request mentions German learning, Anki, audio fiction, Nordson measurement, LOUD/Supreme Commander, real-estate / housing planning, or any other unrelated domain, treat it as out of scope for this project and ask the user whether they meant to switch projects. Those topics are explicitly excluded here.

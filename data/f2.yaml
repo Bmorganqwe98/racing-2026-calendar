@@ -1,0 +1,28 @@
+# Formula 2 — 2026 schedule (STUB DATA; replace during research phase)
+# Source: not yet populated — see NOTES.md for retrieval log
+series: Formula 2
+slug: f2
+calendar_name: F2 2026
+description: FIA Formula 2 Championship 2026 (all sessions in track-local time)
+timezone_default: UTC
+
+rounds:
+  - round: 1
+    name: Sakhir Round
+    short_name: Sakhir
+    circuit: Bahrain International Circuit
+    location: Sakhir, Bahrain
+    tz: Asia/Bahrain
+    sessions:
+      - type: Practice
+        start: 2026-03-06T10:00
+        duration_minutes: 45
+      - type: Qualifying
+        start: 2026-03-06T14:30
+        duration_minutes: 30
+      - type: Sprint Race
+        start: 2026-03-07T15:35
+        duration_minutes: 60
+      - type: Feature Race
+        start: 2026-03-08T11:35
+        duration_minutes: 80

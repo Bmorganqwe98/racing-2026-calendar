@@ -1,0 +1,38 @@
+# World Rally Championship — 2026 schedule (STUB DATA; replace during research phase)
+# Source: not yet populated — see NOTES.md for retrieval log
+#
+# Per the project's WRC convention, stages are collapsed into per-day events
+# (Shakedown / Day 1 / Day 2 / Day 3 / Podium) rather than 20+ stages per
+# round. See rules/racing-project-context.mdc.
+series: World Rally Championship
+slug: wrc
+calendar_name: WRC 2026
+description: FIA World Rally Championship 2026 (collapsed per-day; all in rally-local time)
+timezone_default: UTC
+
+rounds:
+  - round: 1
+    name: Rallye Monte-Carlo
+    short_name: Monte-Carlo
+    circuit: Monaco / Gap, France
+    location: Monte-Carlo, Monaco
+    tz: Europe/Monaco
+    sessions:
+      - type: Shakedown
+        start: 2026-01-22T09:00
+        duration_minutes: 60
+      - type: Day 1
+        start: 2026-01-22T19:00
+        duration_minutes: 240
+      - type: Day 2
+        start: 2026-01-23T08:00
+        duration_minutes: 600
+      - type: Day 3
+        start: 2026-01-24T08:00
+        duration_minutes: 600
+      - type: Day 4
+        start: 2026-01-25T08:00
+        duration_minutes: 240
+      - type: Podium
+        start: 2026-01-25T15:00
+        duration_minutes: 60

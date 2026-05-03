@@ -1,0 +1,34 @@
+# FIA World Endurance Championship — 2026 schedule (STUB DATA; replace during research phase)
+# Source: not yet populated — see NOTES.md for retrieval log
+series: World Endurance Championship
+slug: wec
+calendar_name: WEC 2026
+description: FIA World Endurance Championship 2026 (all sessions in track-local time)
+timezone_default: UTC
+
+rounds:
+  - round: 1
+    name: Qatar 1812 km
+    short_name: Qatar 1812 km
+    circuit: Lusail International Circuit
+    location: Lusail, Qatar
+    tz: Asia/Qatar
+    sessions:
+      - type: FP1
+        start: 2026-02-26T12:00
+        duration_minutes: 90
+      - type: FP2
+        start: 2026-02-26T16:00
+        duration_minutes: 90
+      - type: FP3
+        start: 2026-02-27T12:00
+        duration_minutes: 60
+      - type: Qualifying
+        start: 2026-02-27T15:30
+        duration_minutes: 25
+      - type: Hyperpole
+        start: 2026-02-27T16:00
+        duration_minutes: 12
+      - type: Race
+        start: 2026-02-28T11:00
+        duration_minutes: 600

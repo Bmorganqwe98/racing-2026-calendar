@@ -1,0 +1,65 @@
+# Generated artifacts (produced fresh by GitHub Actions on each deploy)
+output/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Test / lint / type-check caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# Editor / IDE
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Cursor IDE workspace state (lives at workspace root via OneDrive sync;
+# not part of the racing project's source code).
+# Note: .cursor/rules/ IS tracked - that's where project rules live.
+# Patterns are root-anchored with a leading "/" so they only match
+# top-level folders, not similarly-named ones inside .cursor/.
+/ai-tracking/
+/argv.json
+/browser-logs/
+/extensions/
+/ide_state.json
+/mcp.backup.*.json
+/mcp.json
+/plans/
+/plugins/
+/projects/
+/rules/
+/skills/
+/skills-cursor/
+/subagents/
+/commands/
+*.plan.md
+
+# >>> CURSOR MANAGED BLOCK >>>
+# (Cursor may re-add its own block here; the rules above already cover the
+# folders Cursor manages. If Cursor's block reappears with `*` excluding
+# everything, the rules above need to come before it or it'll mask them.)
+# <<< CURSOR MANAGED BLOCK <<<

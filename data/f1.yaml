@@ -1,0 +1,31 @@
+# Formula 1 — 2026 schedule (STUB DATA; replace during research phase)
+# Source: not yet populated — see NOTES.md for retrieval log
+series: Formula 1
+slug: f1
+calendar_name: F1 2026
+description: FIA Formula One World Championship 2026 (all sessions in track-local time)
+timezone_default: UTC
+
+rounds:
+  - round: 1
+    name: Australian Grand Prix
+    short_name: Australian GP
+    circuit: Albert Park Circuit
+    location: Melbourne, Australia
+    tz: Australia/Melbourne
+    sessions:
+      - type: FP1
+        start: 2026-03-06T12:30
+        duration_minutes: 60
+      - type: FP2
+        start: 2026-03-06T16:00
+        duration_minutes: 60
+      - type: FP3
+        start: 2026-03-07T12:30
+        duration_minutes: 60
+      - type: Qualifying
+        start: 2026-03-07T16:00
+        duration_minutes: 60
+      - type: Race
+        start: 2026-03-08T15:00
+        duration_minutes: 120
