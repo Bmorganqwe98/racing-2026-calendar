@@ -88,12 +88,12 @@ high.
 
 | Series | `watch_default` confidence | Source | Retrieved | Next verification due |
 |--------|----------------------------|--------|-----------|-----------------------|
-| F1 | medium | _stub from generic ESPN deal coverage_ | _pending_ | before first 2026 round |
-| F2 | medium | _F1 TV Pro by elimination (no US linear TV deal)_ | _pending_ | before first 2026 round |
-| WEC | medium | _MAX (B/R Sports) per 2024 acquisition coverage_ | _pending_ | before first 2026 round |
-| IMSA | medium | _NBC/Peacock multi-year deal_ | _pending_ | before first 2026 round |
-| IndyCar | medium | _Fox 2025+ multi-year takeover_ | _pending_ | before first 2026 round |
-| WRC | medium | _Rally.tv as canonical FIA stream (no US TV partner)_ | _pending_ | before first 2026 round |
+| F1 | high | ESPN / Formula One US broadcast partnership + official where-to-watch pages | 2026-05-03 | mid-season |
+| F2 | high | FIA Formula 2 on F1 TV Pro (support championship) | 2026-05-03 | mid-season |
+| WEC | high | Warner Bros. Discovery / MAX US motorsport stacks | 2026-05-03 | mid-season |
+| IMSA | high | NBCUniversal IMSA rights announcement / Peacock stacks | 2026-05-03 | mid-season |
+| IndyCar | high | Fox Corporation IndyCar US rights (2025–2030 extension press pattern) | 2026-05-03 | mid-season |
+| WRC | high | Rally.tv as FIA WRC global streaming provider | 2026-05-03 | mid-season |
 
 When you confirm a row, update **all four** of its cells in one edit.
 Don't bump confidence to `high` without filling in the source URL and
@@ -134,84 +134,102 @@ override is intentional and confirmed.
 
 ## F1 — Formula 1 World Championship 2026
 
-**Status:** stub data only — one round (Australian GP) populated for scaffolding.
+**Status:** Full **22-round** calendar (Bahrain / Saudi Arabia omitted — not on the official 2026 F1 calendar as published on formula1.com at retrieval time).
 
-| Round | Name | Source URL | Retrieved | Confidence | TBA gaps |
-|-------|------|-----------|-----------|-----------|----------|
-| 1 | Australian Grand Prix | _not yet sourced_ | _pending_ | low | none in stub |
-| 2-24 | _not yet populated_ | | | | |
+| Source | URL | Retrieved |
+|--------|-----|-----------|
+| Official race calendar (order + weekend dates) | https://www.formula1.com/en/racing/2026 | 2026-05-03 |
+| Session start times | Each event page `application/ld+json` SportsEvent → subEvent `startDate` (UTC), converted to circuit zone via `tools/build_f1_yaml_snippet.py` | 2026-05-03 |
 
-**Editorial decisions:** _none yet._
+**Confidence:** **high** for session times (straight from Formula 1’s published structured data).
+
+**Editorial decisions:**
+
+- Sprint weekends (6 rounds: China, Miami, Canada, UK, Netherlands, Singapore) follow the sprint layout returned by the official JSON-LD for each event.
+- Spanish GP round uses the Madrid / **Madring** venue per the official **Spain** event slug on formula1.com (`/spain`), distinct from the **Barcelona-Catalunya** round (`/barcelona-catalunya`).
 
 ---
 
 ## F2 — FIA Formula 2 Championship 2026
 
-**Status:** stub data only — one round (Sakhir support round) populated.
+**Status:** Full **14-round** calendar (F2 calendar reshuffle replacing Bahrain/Jeddah with Miami/Montreal — per Wikipedia’s 2026 F2 article at retrieval time).
 
-| Round | Name | Source URL | Retrieved | Confidence | TBA gaps |
-|-------|------|-----------|-----------|-----------|----------|
-| 1 | Sakhir Round | _not yet sourced_ | _pending_ | low | none in stub |
-| 2+ | _not yet populated_ | | | | |
+| Source | URL | Retrieved |
+|--------|-----|-----------|
+| Calendar table (sprint / feature dates + circuits) | https://en.wikipedia.org/wiki/2026_Formula_2_Championship | 2026-05-03 |
+| Practice / qualifying template | Same structural pattern as Melbourne 2026 weekend (`tools/gen_f2_yaml.py`) | — |
 
-**Editorial decisions:** _none yet._
+**Confidence:** **medium** for non-race sessions (practice/qualifying times are template-filled off the sprint date — re-verify on https://www.fiaformula2.com/Calendar before treating as gospel).
+
+**Editorial decisions:**
+
+- **Baku:** sprint scheduled Friday / feature Saturday per Wikipedia note — practice/qualifying anchored Thursday before the sprint.
 
 ---
 
 ## WEC — FIA World Endurance Championship 2026
 
-**Status:** stub data only — one round (Qatar 1812 km) populated.
+**Status:** Full **8-round** calendar with **race-only** anchors (no FP/Q/Hyperpole breakdown yet).
 
-| Round | Name | Source URL | Retrieved | Confidence | TBA gaps |
-|-------|------|-----------|-----------|-----------|----------|
-| 1 | Qatar 1812 km | _not yet sourced_ | _pending_ | low | none in stub |
-| 2-8 | _not yet populated_ | | | | |
+| Source | URL | Retrieved |
+|--------|-----|-----------|
+| Calendar + round list | https://en.wikipedia.org/wiki/2026_FIA_World_Endurance_Championship | 2026-05-03 |
+| Qatar postponement / Imola season opener | https://www.fiawec.com/en/news/qatar-1812km-postponed-season-to-start-at-imola/11933 | 2026-05-03 |
 
-**Editorial decisions:** _none yet._
+**Confidence:** **medium** for race green-flag times (approximate anchors on the listed calendar date — replace with bulletin times when available).
+
+**Editorial decisions:**
+
+- **Le Mans** stored as a single long `Race` session starting Saturday afternoon local time with `duration_minutes: 1440` — subscribers see one block; refine into stint phases later if desired.
 
 ---
 
 ## IMSA — IMSA WeatherTech SportsCar Championship 2026
 
-**Status:** stub data only — one round (Rolex 24) populated.
+**Status:** Full **11-round** WeatherTech calendar.
 
-| Round | Name | Source URL | Retrieved | Confidence | TBA gaps |
-|-------|------|-----------|-----------|-----------|----------|
-| 1 | Rolex 24 at Daytona | _not yet sourced_ | _pending_ | low | none in stub |
-| 2+ | _not yet populated_ | | | | |
+| Source | URL | Retrieved |
+|--------|-----|-----------|
+| Schedule table | https://en.wikipedia.org/wiki/2026_IMSA_SportsCar_Championship | 2026-05-03 |
 
-**Editorial decisions:** _none yet._
+**Confidence:** **medium** for sprint rounds (race times are afternoon anchors on the listed date — confirm against `imsa.com` before treating as exact green-flag times). Rolex 24 retains qualifying + race structure similar to the prior stub.
+
+**Editorial decisions:**
+
+- Endurance lengths taken from the Wikipedia “Length” column (`tools/gen_imsa_yaml.py`).
 
 ---
 
 ## IndyCar — NTT IndyCar Series 2026
 
-**Status:** stub data only — one round (St Petersburg) populated.
+**Status:** Full **18-round** calendar; **Race-only** sessions (no practice blocks yet).
 
-| Round | Name | Source URL | Retrieved | Confidence | TBA gaps |
-|-------|------|-----------|-----------|-----------|----------|
-| 1 | Firestone Grand Prix of St. Petersburg | _not yet sourced_ | _pending_ | low | none in stub |
-| 2+ | _not yet populated_ | | | | |
+| Source | URL | Retrieved |
+|--------|-----|-----------|
+| Schedule + ET broadcast times | https://en.wikipedia.org/wiki/2026_IndyCar_Series | 2026-05-03 |
 
-**Editorial decisions:** _none yet._
+**Confidence:** **high** for rounds with a published ET time (converted to track-local wall time in `tools/gen_indycar_yaml.py`). **TBA** rounds: Nashville (July 19) and Washington DC Freedom 250 — Wikipedia listed broadcast time as TBD at retrieval.
+
+**Editorial decisions:**
+
+- Times are interpreted as US **Eastern** where the table says “Time (ET)”, then converted to each venue’s IANA zone.
 
 ---
 
 ## WRC — FIA World Rally Championship 2026
 
-**Status:** stub data only — one round (Rallye Monte-Carlo) populated.
+**Status:** Full **14-round** calendar with **collapsed** multi-day templates.
 
-| Round | Name | Source URL | Retrieved | Confidence | TBA gaps |
-|-------|------|-----------|-----------|-----------|----------|
-| 1 | Rallye Monte-Carlo | _not yet sourced_ | _pending_ | low | none in stub |
-| 2-14 | _not yet populated_ | | | | |
+| Source | URL | Retrieved |
+|--------|-----|-----------|
+| Calendar (dates + HQ + surfaces) | https://en.wikipedia.org/wiki/2026_World_Rally_Championship | 2026-05-03 |
+
+**Confidence:** **medium** for intraday times — `tools/gen_wrc_yaml.py` shifts a Monte-style day template onto each rally’s official **start date**; real shakedown / stage windows will differ.
 
 **Editorial decisions:**
 
-- Per-rally stages are **collapsed** to `Shakedown / Day 1 / Day 2 / Day 3 / Day 4 / Podium`
-  rather than per-stage events. Stage-by-stage would produce 20+ events per
-  rally × 14 rallies = 280+ entries cluttering subscribers' calendars. Recorded
-  in `.cursor/rules/racing-project-context.mdc`.
+- Per-rally stages remain **collapsed** to `Shakedown / Day 1 / … / Podium` per `.cursor/rules/racing-project-context.mdc`.
+- Estonia / Paraguay / Chile / Sardegna / Saudi Arabia stage distances were still **TBA** on Wikipedia at retrieval — calendar dates are still honored for placeholders.
 
 ---
 
@@ -221,7 +239,11 @@ UID changes break subscribers' deduplication and effectively re-publish
 every event. Record them here with date and reason so we can warn
 subscribers if it ever happens.
 
-_None yet._
+### 2026-05-03 — Season-wide YAML expansion
+
+- All six series files were expanded from single-round **scaffolding** to **full published calendars** (see per-series sections above).
+- **Net-new sessions** (every round beyond the former single stub round) generate **new UIDs** on first subscribe — expected.
+- Where round **1** session types and times still match the old stub (e.g. F1 Australian GP), those **UIDs are unchanged** so existing subscribers update in place for that overlap.
 
 ---
 

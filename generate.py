@@ -20,6 +20,9 @@ Run locally:
     pip install -r requirements.txt
     python generate.py
     # -> output/*.ics + output/index.html + output/.nojekyll
+
+Research helpers (optional): see `tools/` — e.g. `build_f1_yaml_snippet.py`,
+`gen_f2_yaml.py`, `gen_indycar_yaml.py` for regenerating `data/*.yaml` rows.
 """
 
 from __future__ import annotations

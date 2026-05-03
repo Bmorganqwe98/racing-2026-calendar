@@ -5,6 +5,10 @@ race — for the 2026 seasons of **F1, F2, WEC, IMSA, IndyCar, and WRC**, all
 in correct track-local time zones, published to GitHub Pages so your Google
 Calendar (or Apple/Outlook) subscribes once and refreshes itself.
 
+[![Deploy to GitHub Pages](https://github.com/Bmorganqwe98/racing-2026-calendar/actions/workflows/deploy.yml/badge.svg)](https://github.com/Bmorganqwe98/racing-2026-calendar/actions/workflows/deploy.yml)
+
+After every push to `main`, open that workflow link and confirm the latest run is **green** (build, tests, `generate.py`, deploy). If deploy fails, GitHub Pages will not pick up your YAML edits until the workflow passes.
+
 > Subscribe to one URL per series; once you've added it, you never have to
 > re-import anything. Edit the YAML, push to `main`, and your calendar
 > updates on its next refresh.

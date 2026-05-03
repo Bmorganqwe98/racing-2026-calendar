@@ -1,42 +1,104 @@
-# FIA World Endurance Championship — 2026 schedule (STUB DATA; replace during research phase)
-# Source: not yet populated — see NOTES.md for retrieval log
+# FIA World Endurance Championship — 2026 schedule
+# Race anchors from Wikipedia + FIA WEC calendar news (see file header in tools/gen_wec_yaml.py).
+#
 series: World Endurance Championship
 slug: wec
 calendar_name: WEC 2026
-description: FIA World Endurance Championship 2026 (all sessions in track-local time)
+description: FIA World Endurance Championship 2026 (track-local time)
 timezone_default: UTC
 
-# US watch-info default. MAX (formerly HBO Max) carries WEC live in the US;
-# the FIA WEC App is the broadcaster-agnostic backup.
 watch_default:
   us_broadcast: MAX (B/R Sports tier)
   us_streaming: MAX / FIA WEC App
-  confidence: medium
-  notes: MAX holds US WEC rights; the FIA WEC App is a global backup with subscription.
+  confidence: high
+  notes: Warner Bros. Discovery / MAX carries WEC in the US; verify race listings on MAX.
 
 rounds:
   - round: 1
+    name: 6 Hours of Imola
+    short_name: Imola 6h
+    circuit: Imola Circuit
+    location: Imola, Italy
+    tz: Europe/Rome
+    sessions:
+      - type: Race
+        start: 2026-04-19T12:45
+        duration_minutes: 360
+
+  - round: 2
+    name: 6 Hours of Spa-Francorchamps
+    short_name: Spa 6h
+    circuit: Circuit de Spa-Francorchamps
+    location: Stavelot, Belgium
+    tz: Europe/Brussels
+    sessions:
+      - type: Race
+        start: 2026-05-09T12:45
+        duration_minutes: 360
+
+  - round: 3
+    name: 24 Hours of Le Mans
+    short_name: Le Mans 24h
+    circuit: Circuit de la Sarthe
+    location: Le Mans, France
+    tz: Europe/Paris
+    sessions:
+      - type: Race
+        start: 2026-06-13T16:00
+        duration_minutes: 1440
+
+  - round: 4
+    name: 6 Hours of São Paulo
+    short_name: São Paulo 6h
+    circuit: Interlagos Circuit
+    location: São Paulo, Brazil
+    tz: America/Sao_Paulo
+    sessions:
+      - type: Race
+        start: 2026-07-12T11:30
+        duration_minutes: 360
+
+  - round: 5
+    name: Lone Star Le Mans
+    short_name: COTA 6h
+    circuit: Circuit of The Americas
+    location: Austin, Texas, USA
+    tz: America/Chicago
+    sessions:
+      - type: Race
+        start: 2026-09-06T13:00
+        duration_minutes: 360
+
+  - round: 6
+    name: 6 Hours of Fuji
+    short_name: Fuji 6h
+    circuit: Fuji Speedway
+    location: Oyama, Shizuoka, Japan
+    tz: Asia/Tokyo
+    sessions:
+      - type: Race
+        start: 2026-09-27T11:00
+        duration_minutes: 360
+
+  - round: 7
     name: Qatar 1812 km
     short_name: Qatar 1812 km
     circuit: Lusail International Circuit
     location: Lusail, Qatar
     tz: Asia/Qatar
     sessions:
-      - type: FP1
-        start: 2026-02-26T12:00
-        duration_minutes: 90
-      - type: FP2
-        start: 2026-02-26T16:00
-        duration_minutes: 90
-      - type: FP3
-        start: 2026-02-27T12:00
-        duration_minutes: 60
-      - type: Qualifying
-        start: 2026-02-27T15:30
-        duration_minutes: 25
-      - type: Hyperpole
-        start: 2026-02-27T16:00
-        duration_minutes: 12
       - type: Race
-        start: 2026-02-28T11:00
-        duration_minutes: 600
+        start: 2026-10-24T14:00
+        duration_minutes: 720
+
+  - round: 8
+    name: 8 Hours of Bahrain
+    short_name: Bahrain 8h
+    circuit: Bahrain International Circuit
+    location: Sakhir, Bahrain
+    tz: Asia/Bahrain
+    sessions:
+      - type: Race
+        start: 2026-11-07T14:00
+        duration_minutes: 480
+

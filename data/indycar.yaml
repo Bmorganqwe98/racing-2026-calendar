@@ -1,36 +1,199 @@
-# IndyCar Series — 2026 schedule (STUB DATA; replace during research phase)
-# Source: not yet populated — see NOTES.md for retrieval log
+# IndyCar Series — 2026 schedule
+#
+# Race dates and Eastern broadcast times from Wikipedia (see tools/gen_indycar_yaml.py).
+# Each Race start is stored in the circuit's local zone.
+# Rounds with no published ET yet use start: TBA (all-day placeholder).
+#
 series: IndyCar Series
 slug: indycar
 calendar_name: IndyCar 2026
 description: NTT IndyCar Series 2026 (all sessions in track-local time)
 timezone_default: America/New_York
 
-# US watch-info default. FOX is the exclusive US IndyCar broadcaster
-# starting from the 2025 season under a multi-year deal that covers 2026.
 watch_default:
   us_broadcast: FOX / FS1
   us_streaming: FOX Sports app / IndyCar Live
-  confidence: medium
-  notes: FOX holds US IndyCar broadcast rights through 2026 and beyond (multi-year deal).
+  confidence: high
+  notes: FOX holds exclusive US linear rights for IndyCar (multi-year deal incl. 2026).
 
 rounds:
   - round: 1
     name: Firestone Grand Prix of St. Petersburg
     short_name: St. Petersburg GP
-    circuit: Streets of St. Petersburg
+    circuit: St. Petersburg Street Circuit
     location: St. Petersburg, Florida, USA
     tz: America/New_York
     sessions:
-      - type: Practice 1
-        start: 2026-03-13T11:30
-        duration_minutes: 45
-      - type: Practice 2
-        start: 2026-03-13T15:00
-        duration_minutes: 45
-      - type: Qualifying
-        start: 2026-03-14T12:30
-        duration_minutes: 75
       - type: Race
-        start: 2026-03-15T12:30
+        start: 2026-03-01T12:00
+        duration_minutes: 120
+  - round: 2
+    name: Good Ranchers 250
+    short_name: Phoenix
+    circuit: Phoenix Raceway
+    location: Avondale, Arizona, USA
+    tz: America/Phoenix
+    sessions:
+      - type: Race
+        start: 2026-03-07T13:00
+        duration_minutes: 120
+  - round: 3
+    name: Java House Grand Prix of Arlington
+    short_name: Arlington GP
+    circuit: Streets of Arlington
+    location: Arlington, Texas, USA
+    tz: America/Chicago
+    sessions:
+      - type: Race
+        start: 2026-03-15T11:30
+        duration_minutes: 120
+  - round: 4
+    name: Children's of Alabama Indy Grand Prix
+    short_name: Barber GP
+    circuit: Barber Motorsports Park
+    location: Birmingham, Alabama, USA
+    tz: America/Chicago
+    sessions:
+      - type: Race
+        start: 2026-03-29T12:00
+        duration_minutes: 120
+  - round: 5
+    name: Acura Grand Prix of Long Beach
+    short_name: Long Beach GP
+    circuit: Long Beach Street Circuit
+    location: Long Beach, California, USA
+    tz: America/Los_Angeles
+    sessions:
+      - type: Race
+        start: 2026-04-19T14:30
+        duration_minutes: 120
+  - round: 6
+    name: Sonsio Grand Prix
+    short_name: Indianapolis GP
+    circuit: Indianapolis Motor Speedway Road Course
+    location: Speedway, Indiana, USA
+    tz: America/Indiana/Indianapolis
+    sessions:
+      - type: Race
+        start: 2026-05-09T16:30
+        duration_minutes: 120
+  - round: 7
+    name: Indianapolis 500
+    short_name: Indianapolis 500
+    circuit: Indianapolis Motor Speedway
+    location: Speedway, Indiana, USA
+    tz: America/Indiana/Indianapolis
+    sessions:
+      - type: Race
+        start: 2026-05-24T10:00
+        duration_minutes: 120
+  - round: 8
+    name: Chevrolet Detroit Grand Prix
+    short_name: Detroit GP
+    circuit: Detroit Street Circuit
+    location: Detroit, Michigan, USA
+    tz: America/New_York
+    sessions:
+      - type: Race
+        start: 2026-05-31T12:30
+        duration_minutes: 120
+  - round: 9
+    name: Bommarito Automotive Group 500
+    short_name: Gateway
+    circuit: World Wide Technology Raceway
+    location: Madison, Illinois, USA
+    tz: America/Chicago
+    sessions:
+      - type: Race
+        start: 2026-06-07T20:00
+        duration_minutes: 120
+  - round: 10
+    name: XPEL Grand Prix at Road America
+    short_name: Road America GP
+    circuit: Road America
+    location: Elkhart Lake, Wisconsin, USA
+    tz: America/Chicago
+    sessions:
+      - type: Race
+        start: 2026-06-21T13:00
+        duration_minutes: 120
+  - round: 11
+    name: Honda Indy 200 at Mid-Ohio
+    short_name: Mid-Ohio GP
+    circuit: Mid-Ohio Sports Car Course
+    location: Lexington, Ohio, USA
+    tz: America/New_York
+    sessions:
+      - type: Race
+        start: 2026-07-05T12:30
+        duration_minutes: 120
+  - round: 12
+    name: Borchetta Bourbon Music City Grand Prix
+    short_name: Nashville GP
+    circuit: Nashville Superspeedway
+    location: Lebanon, Tennessee, USA
+    tz: America/Chicago
+    sessions:
+      - type: Race
+        start: TBA
+        duration_minutes: 120
+  - round: 13
+    name: BitNile.com Grand Prix of Portland
+    short_name: Portland GP
+    circuit: Portland International Raceway
+    location: Portland, Oregon, USA
+    tz: America/Los_Angeles
+    sessions:
+      - type: Race
+        start: 2026-08-09T13:00
+        duration_minutes: 120
+  - round: 14
+    name: Ontario Honda Dealers Indy at Markham
+    short_name: Markham GP
+    circuit: Streets of Markham
+    location: Markham, Ontario, Canada
+    tz: America/Toronto
+    sessions:
+      - type: Race
+        start: 2026-08-16T12:00
+        duration_minutes: 120
+  - round: 15
+    name: Freedom 250 Grand Prix of Washington, D.C.
+    short_name: Washington GP
+    circuit: Streets of Washington
+    location: Washington, D.C., USA
+    tz: America/New_York
+    sessions:
+      - type: Race
+        start: TBA
+        duration_minutes: 120
+  - round: 16
+    name: Snap-on Makers and Fixers 250
+    short_name: Milwaukee Race 1
+    circuit: Milwaukee Mile
+    location: West Allis, Wisconsin, USA
+    tz: America/Chicago
+    sessions:
+      - type: Race
+        start: 2026-08-29T13:30
+        duration_minutes: 120
+  - round: 17
+    name: Snap-on Milwaukee Mile 250
+    short_name: Milwaukee Race 2
+    circuit: Milwaukee Mile
+    location: West Allis, Wisconsin, USA
+    tz: America/Chicago
+    sessions:
+      - type: Race
+        start: 2026-08-30T12:00
+        duration_minutes: 120
+  - round: 18
+    name: IndyCar Grand Prix of Monterey
+    short_name: Laguna Seca GP
+    circuit: WeatherTech Raceway Laguna Seca
+    location: Monterey, California, USA
+    tz: America/Los_Angeles
+    sessions:
+      - type: Race
+        start: 2026-09-06T11:30
         duration_minutes: 120

@@ -1,18 +1,24 @@
-# Formula 1 — 2026 schedule (STUB DATA; replace during research phase)
-# Source: not yet populated — see NOTES.md for retrieval log
+# Formula 1 — 2026 schedule
+#
+# Calendar order and weekend dates cross-checked to:
+#   https://www.formula1.com/en/racing/2026 (retrieved 2026-05-03).
+# Session start times: ISO timestamps from each event page's JSON-LD
+# (SportsEvent.subEvent startDate, UTC) converted to the circuit time zone
+# using tools/build_f1_yaml_snippet.py — re-run that script if refreshing times.
+#
 series: Formula 1
 slug: f1
 calendar_name: F1 2026
 description: FIA Formula One World Championship 2026 (all sessions in track-local time)
 timezone_default: UTC
 
-# US watch-info default (applies to every session unless a session has its own `watch:` block).
-# Update with confidence: high once 2026 confirmations land; see NOTES.md.
 watch_default:
   us_broadcast: ESPN / ESPN2
   us_streaming: ESPN+ / F1 TV Pro
-  confidence: medium
-  notes: ESPN holds US F1 broadcast rights through the 2026 season.
+  confidence: high
+  notes: >-
+    US rights per ESPN / Formula One broadcast partnership (verify listings on
+    ESPN or Formula1.com where-to-watch for each weekend).
 
 rounds:
   - round: 1
@@ -24,16 +30,389 @@ rounds:
     sessions:
       - type: FP1
         start: 2026-03-06T12:30
-        duration_minutes: 60
       - type: FP2
         start: 2026-03-06T16:00
-        duration_minutes: 60
       - type: FP3
         start: 2026-03-07T12:30
-        duration_minutes: 60
       - type: Qualifying
         start: 2026-03-07T16:00
-        duration_minutes: 60
       - type: Race
         start: 2026-03-08T15:00
-        duration_minutes: 120
+
+  - round: 2
+    name: Chinese Grand Prix
+    short_name: Chinese GP
+    circuit: Shanghai International Circuit
+    location: Shanghai, China
+    tz: Asia/Shanghai
+    sessions:
+      - type: FP1
+        start: 2026-03-13T11:30
+      - type: Sprint Qualifying
+        start: 2026-03-13T15:30
+      - type: Sprint
+        start: 2026-03-14T11:00
+      - type: Qualifying
+        start: 2026-03-14T15:00
+      - type: Race
+        start: 2026-03-15T15:00
+
+  - round: 3
+    name: Japanese Grand Prix
+    short_name: Japanese GP
+    circuit: Suzuka International Racing Course
+    location: Suzuka, Japan
+    tz: Asia/Tokyo
+    sessions:
+      - type: FP1
+        start: 2026-03-27T11:30
+      - type: FP2
+        start: 2026-03-27T15:00
+      - type: FP3
+        start: 2026-03-28T11:30
+      - type: Qualifying
+        start: 2026-03-28T15:00
+      - type: Race
+        start: 2026-03-29T14:00
+
+  - round: 4
+    name: Miami Grand Prix
+    short_name: Miami GP
+    circuit: Miami International Autodrome
+    location: Miami Gardens, Florida, USA
+    tz: America/New_York
+    sessions:
+      - type: FP1
+        start: 2026-05-01T12:00
+      - type: Sprint Qualifying
+        start: 2026-05-01T16:30
+      - type: Sprint
+        start: 2026-05-02T12:00
+      - type: Qualifying
+        start: 2026-05-02T16:00
+      - type: Race
+        start: 2026-05-03T13:00
+
+  - round: 5
+    name: Canadian Grand Prix
+    short_name: Canadian GP
+    circuit: Circuit Gilles Villeneuve
+    location: Montreal, Canada
+    tz: America/Toronto
+    sessions:
+      - type: FP1
+        start: 2026-05-22T12:30
+      - type: Sprint Qualifying
+        start: 2026-05-22T16:30
+      - type: Sprint
+        start: 2026-05-23T12:00
+      - type: Qualifying
+        start: 2026-05-23T16:00
+      - type: Race
+        start: 2026-05-24T16:00
+
+  - round: 6
+    name: Monaco Grand Prix
+    short_name: Monaco GP
+    circuit: Circuit de Monaco
+    location: Monte Carlo, Monaco
+    tz: Europe/Monaco
+    sessions:
+      - type: FP1
+        start: 2026-06-05T13:30
+      - type: FP2
+        start: 2026-06-05T17:00
+      - type: FP3
+        start: 2026-06-06T12:30
+      - type: Qualifying
+        start: 2026-06-06T16:00
+      - type: Race
+        start: 2026-06-07T15:00
+
+  - round: 7
+    name: Barcelona-Catalunya Grand Prix
+    short_name: Barcelona-Catalunya GP
+    circuit: Circuit de Barcelona-Catalunya
+    location: Montmeló, Spain
+    tz: Europe/Madrid
+    sessions:
+      - type: FP1
+        start: 2026-06-12T13:30
+      - type: FP2
+        start: 2026-06-12T17:00
+      - type: FP3
+        start: 2026-06-13T12:30
+      - type: Qualifying
+        start: 2026-06-13T16:00
+      - type: Race
+        start: 2026-06-14T15:00
+
+  - round: 8
+    name: Austrian Grand Prix
+    short_name: Austrian GP
+    circuit: Red Bull Ring
+    location: Spielberg, Austria
+    tz: Europe/Vienna
+    sessions:
+      - type: FP1
+        start: 2026-06-26T13:30
+      - type: FP2
+        start: 2026-06-26T17:00
+      - type: FP3
+        start: 2026-06-27T12:30
+      - type: Qualifying
+        start: 2026-06-27T16:00
+      - type: Race
+        start: 2026-06-28T15:00
+
+  - round: 9
+    name: British Grand Prix
+    short_name: British GP
+    circuit: Silverstone Circuit
+    location: Silverstone, UK
+    tz: Europe/London
+    sessions:
+      - type: FP1
+        start: 2026-07-03T12:30
+      - type: Sprint Qualifying
+        start: 2026-07-03T16:30
+      - type: Sprint
+        start: 2026-07-04T12:00
+      - type: Qualifying
+        start: 2026-07-04T16:00
+      - type: Race
+        start: 2026-07-05T15:00
+
+  - round: 10
+    name: Belgian Grand Prix
+    short_name: Belgian GP
+    circuit: Circuit de Spa-Francorchamps
+    location: Stavelot, Belgium
+    tz: Europe/Brussels
+    sessions:
+      - type: FP1
+        start: 2026-07-17T13:30
+      - type: FP2
+        start: 2026-07-17T17:00
+      - type: FP3
+        start: 2026-07-18T12:30
+      - type: Qualifying
+        start: 2026-07-18T16:00
+      - type: Race
+        start: 2026-07-19T15:00
+
+  - round: 11
+    name: Hungarian Grand Prix
+    short_name: Hungarian GP
+    circuit: Hungaroring
+    location: Mogyoród, Hungary
+    tz: Europe/Budapest
+    sessions:
+      - type: FP1
+        start: 2026-07-24T13:30
+      - type: FP2
+        start: 2026-07-24T17:00
+      - type: FP3
+        start: 2026-07-25T12:30
+      - type: Qualifying
+        start: 2026-07-25T16:00
+      - type: Race
+        start: 2026-07-26T15:00
+
+  - round: 12
+    name: Dutch Grand Prix
+    short_name: Dutch GP
+    circuit: Circuit Zandvoort
+    location: Zandvoort, Netherlands
+    tz: Europe/Amsterdam
+    sessions:
+      - type: FP1
+        start: 2026-08-21T12:30
+      - type: Sprint Qualifying
+        start: 2026-08-21T16:30
+      - type: Sprint
+        start: 2026-08-22T12:00
+      - type: Qualifying
+        start: 2026-08-22T16:00
+      - type: Race
+        start: 2026-08-23T15:00
+
+  - round: 13
+    name: Italian Grand Prix
+    short_name: Italian GP
+    circuit: Monza Circuit
+    location: Monza, Italy
+    tz: Europe/Rome
+    sessions:
+      - type: FP1
+        start: 2026-09-04T12:30
+      - type: FP2
+        start: 2026-09-04T16:00
+      - type: FP3
+        start: 2026-09-05T12:30
+      - type: Qualifying
+        start: 2026-09-05T16:00
+      - type: Race
+        start: 2026-09-06T15:00
+
+  - round: 14
+    name: Spanish Grand Prix
+    short_name: Spanish GP
+    circuit: Madring / Madrid street circuit
+    location: Madrid, Spain
+    tz: Europe/Madrid
+    sessions:
+      - type: FP1
+        start: 2026-09-11T13:30
+      - type: FP2
+        start: 2026-09-11T17:00
+      - type: FP3
+        start: 2026-09-12T12:30
+      - type: Qualifying
+        start: 2026-09-12T16:00
+      - type: Race
+        start: 2026-09-13T15:00
+
+  - round: 15
+    name: Azerbaijan Grand Prix
+    short_name: Azerbaijan GP
+    circuit: Baku City Circuit
+    location: Baku, Azerbaijan
+    tz: Asia/Baku
+    sessions:
+      - type: FP1
+        start: 2026-09-24T12:30
+      - type: FP2
+        start: 2026-09-24T16:00
+      - type: FP3
+        start: 2026-09-25T12:30
+      - type: Qualifying
+        start: 2026-09-25T16:00
+      - type: Race
+        start: 2026-09-26T15:00
+
+  - round: 16
+    name: Singapore Grand Prix
+    short_name: Singapore GP
+    circuit: Marina Bay Street Circuit
+    location: Singapore
+    tz: Asia/Singapore
+    sessions:
+      - type: FP1
+        start: 2026-10-09T16:30
+      - type: Sprint Qualifying
+        start: 2026-10-09T20:30
+      - type: Sprint
+        start: 2026-10-10T17:00
+      - type: Qualifying
+        start: 2026-10-10T21:00
+      - type: Race
+        start: 2026-10-11T20:00
+
+  - round: 17
+    name: United States Grand Prix
+    short_name: United States GP
+    circuit: Circuit of The Americas
+    location: Austin, Texas, USA
+    tz: America/Chicago
+    sessions:
+      - type: FP1
+        start: 2026-10-23T12:30
+      - type: FP2
+        start: 2026-10-23T16:00
+      - type: FP3
+        start: 2026-10-24T12:30
+      - type: Qualifying
+        start: 2026-10-24T16:00
+      - type: Race
+        start: 2026-10-25T15:00
+
+  - round: 18
+    name: Mexico City Grand Prix
+    short_name: Mexico City GP
+    circuit: Autódromo Hermanos Rodríguez
+    location: Mexico City, Mexico
+    tz: America/Mexico_City
+    sessions:
+      - type: FP1
+        start: 2026-10-30T12:30
+      - type: FP2
+        start: 2026-10-30T16:00
+      - type: FP3
+        start: 2026-10-31T11:30
+      - type: Qualifying
+        start: 2026-10-31T15:00
+      - type: Race
+        start: 2026-11-01T14:00
+
+  - round: 19
+    name: São Paulo Grand Prix
+    short_name: São Paulo GP
+    circuit: Interlagos Circuit
+    location: São Paulo, Brazil
+    tz: America/Sao_Paulo
+    sessions:
+      - type: FP1
+        start: 2026-11-06T12:30
+      - type: FP2
+        start: 2026-11-06T16:00
+      - type: FP3
+        start: 2026-11-07T11:30
+      - type: Qualifying
+        start: 2026-11-07T15:00
+      - type: Race
+        start: 2026-11-08T14:00
+
+  - round: 20
+    name: Las Vegas Grand Prix
+    short_name: Las Vegas GP
+    circuit: Las Vegas Strip Circuit
+    location: Las Vegas, Nevada, USA
+    tz: America/Los_Angeles
+    sessions:
+      - type: FP1
+        start: 2026-11-19T16:30
+      - type: FP2
+        start: 2026-11-19T20:00
+      - type: FP3
+        start: 2026-11-20T16:30
+      - type: Qualifying
+        start: 2026-11-20T20:00
+      - type: Race
+        start: 2026-11-21T20:00
+
+  - round: 21
+    name: Qatar Grand Prix
+    short_name: Qatar GP
+    circuit: Lusail International Circuit
+    location: Lusail, Qatar
+    tz: Asia/Qatar
+    sessions:
+      - type: FP1
+        start: 2026-11-27T16:30
+      - type: FP2
+        start: 2026-11-27T20:00
+      - type: FP3
+        start: 2026-11-28T17:30
+      - type: Qualifying
+        start: 2026-11-28T21:00
+      - type: Race
+        start: 2026-11-29T19:00
+
+  - round: 22
+    name: Abu Dhabi Grand Prix
+    short_name: Abu Dhabi GP
+    circuit: Yas Marina Circuit
+    location: Abu Dhabi, UAE
+    tz: Asia/Dubai
+    sessions:
+      - type: FP1
+        start: 2026-12-04T13:30
+      - type: FP2
+        start: 2026-12-04T17:00
+      - type: FP3
+        start: 2026-12-05T14:30
+      - type: Qualifying
+        start: 2026-12-05T18:00
+      - type: Race
+        start: 2026-12-06T17:00

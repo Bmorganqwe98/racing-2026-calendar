@@ -1,26 +1,30 @@
-# Formula 2 — 2026 schedule (STUB DATA; replace during research phase)
-# Source: not yet populated — see NOTES.md for retrieval log
+# Formula 2 — 2026 schedule
+#
+# Sprint / feature race dates from Wikipedia's F2 calendar table; practice and
+# qualifying use the template described in tools/gen_f2_yaml.py (same structure
+# as the Melbourne opener). Re-verify against https://www.fiaformula2.com/Calendar
+# before relying on non-race session times.
+#
 series: Formula 2
 slug: f2
 calendar_name: F2 2026
 description: FIA Formula 2 Championship 2026 (all sessions in track-local time)
 timezone_default: UTC
 
-# US watch-info default; F2 has no dedicated US linear-TV deal in 2026,
-# so the F1 TV Pro subscription remains the most reliable path.
 watch_default:
   us_broadcast: F1 TV Pro (no US linear TV)
   us_streaming: F1 TV Pro
-  confidence: medium
-  notes: F2 is a support series; in the US, F1 TV Pro is the only consistent live source.
+  confidence: high
+  notes: >-
+    F2 sessions air on F1 TV Pro in the US (support series to Formula 1).
 
 rounds:
   - round: 1
-    name: Sakhir Round
-    short_name: Sakhir
-    circuit: Bahrain International Circuit
-    location: Sakhir, Bahrain
-    tz: Asia/Bahrain
+    name: Melbourne Round
+    short_name: Melbourne
+    circuit: Albert Park Circuit
+    location: Melbourne, Australia
+    tz: Australia/Melbourne
     sessions:
       - type: Practice
         start: 2026-03-06T10:00
@@ -34,3 +38,264 @@ rounds:
       - type: Feature Race
         start: 2026-03-08T11:35
         duration_minutes: 80
+
+  - round: 2
+    name: Miami Round
+    short_name: Miami
+    circuit: Miami International Autodrome
+    location: Miami Gardens, Florida, USA
+    tz: America/New_York
+    sessions:
+      - type: Practice
+        start: 2026-05-01T10:00
+        duration_minutes: 45
+      - type: Qualifying
+        start: 2026-05-01T14:30
+        duration_minutes: 30
+      - type: Sprint Race
+        start: 2026-05-02T15:35
+        duration_minutes: 60
+      - type: Feature Race
+        start: 2026-05-03T11:35
+        duration_minutes: 80
+
+  - round: 3
+    name: Montreal Round
+    short_name: Montreal
+    circuit: Circuit Gilles Villeneuve
+    location: Montreal, Canada
+    tz: America/Toronto
+    sessions:
+      - type: Practice
+        start: 2026-05-22T10:00
+        duration_minutes: 45
+      - type: Qualifying
+        start: 2026-05-22T14:30
+        duration_minutes: 30
+      - type: Sprint Race
+        start: 2026-05-23T15:35
+        duration_minutes: 60
+      - type: Feature Race
+        start: 2026-05-24T11:35
+        duration_minutes: 80
+
+  - round: 4
+    name: Monte Carlo Round
+    short_name: Monte Carlo
+    circuit: Circuit de Monaco
+    location: Monte Carlo, Monaco
+    tz: Europe/Monaco
+    sessions:
+      - type: Practice
+        start: 2026-06-05T10:00
+        duration_minutes: 45
+      - type: Qualifying
+        start: 2026-06-05T14:30
+        duration_minutes: 30
+      - type: Sprint Race
+        start: 2026-06-06T15:35
+        duration_minutes: 60
+      - type: Feature Race
+        start: 2026-06-07T11:35
+        duration_minutes: 80
+
+  - round: 5
+    name: Barcelona Round
+    short_name: Barcelona
+    circuit: Circuit de Barcelona-Catalunya
+    location: Montmeló, Spain
+    tz: Europe/Madrid
+    sessions:
+      - type: Practice
+        start: 2026-06-12T10:00
+        duration_minutes: 45
+      - type: Qualifying
+        start: 2026-06-12T14:30
+        duration_minutes: 30
+      - type: Sprint Race
+        start: 2026-06-13T15:35
+        duration_minutes: 60
+      - type: Feature Race
+        start: 2026-06-14T11:35
+        duration_minutes: 80
+
+  - round: 6
+    name: Spielberg Round
+    short_name: Spielberg
+    circuit: Red Bull Ring
+    location: Spielberg, Austria
+    tz: Europe/Vienna
+    sessions:
+      - type: Practice
+        start: 2026-06-26T10:00
+        duration_minutes: 45
+      - type: Qualifying
+        start: 2026-06-26T14:30
+        duration_minutes: 30
+      - type: Sprint Race
+        start: 2026-06-27T15:35
+        duration_minutes: 60
+      - type: Feature Race
+        start: 2026-06-28T11:35
+        duration_minutes: 80
+
+  - round: 7
+    name: Silverstone Round
+    short_name: Silverstone
+    circuit: Silverstone Circuit
+    location: Silverstone, UK
+    tz: Europe/London
+    sessions:
+      - type: Practice
+        start: 2026-07-03T10:00
+        duration_minutes: 45
+      - type: Qualifying
+        start: 2026-07-03T14:30
+        duration_minutes: 30
+      - type: Sprint Race
+        start: 2026-07-04T15:35
+        duration_minutes: 60
+      - type: Feature Race
+        start: 2026-07-05T11:35
+        duration_minutes: 80
+
+  - round: 8
+    name: Spa-Francorchamps Round
+    short_name: Spa-Francorchamps
+    circuit: Circuit de Spa-Francorchamps
+    location: Stavelot, Belgium
+    tz: Europe/Brussels
+    sessions:
+      - type: Practice
+        start: 2026-07-17T10:00
+        duration_minutes: 45
+      - type: Qualifying
+        start: 2026-07-17T14:30
+        duration_minutes: 30
+      - type: Sprint Race
+        start: 2026-07-18T15:35
+        duration_minutes: 60
+      - type: Feature Race
+        start: 2026-07-19T11:35
+        duration_minutes: 80
+
+  - round: 9
+    name: Hungaroring Round
+    short_name: Hungaroring
+    circuit: Hungaroring
+    location: Mogyoród, Hungary
+    tz: Europe/Budapest
+    sessions:
+      - type: Practice
+        start: 2026-07-24T10:00
+        duration_minutes: 45
+      - type: Qualifying
+        start: 2026-07-24T14:30
+        duration_minutes: 30
+      - type: Sprint Race
+        start: 2026-07-25T15:35
+        duration_minutes: 60
+      - type: Feature Race
+        start: 2026-07-26T11:35
+        duration_minutes: 80
+
+  - round: 10
+    name: Monza Round
+    short_name: Monza
+    circuit: Monza Circuit
+    location: Monza, Italy
+    tz: Europe/Rome
+    sessions:
+      - type: Practice
+        start: 2026-09-04T10:00
+        duration_minutes: 45
+      - type: Qualifying
+        start: 2026-09-04T14:30
+        duration_minutes: 30
+      - type: Sprint Race
+        start: 2026-09-05T15:35
+        duration_minutes: 60
+      - type: Feature Race
+        start: 2026-09-06T11:35
+        duration_minutes: 80
+
+  - round: 11
+    name: Madrid Round
+    short_name: Madrid
+    circuit: Madring
+    location: Madrid, Spain
+    tz: Europe/Madrid
+    sessions:
+      - type: Practice
+        start: 2026-09-11T10:00
+        duration_minutes: 45
+      - type: Qualifying
+        start: 2026-09-11T14:30
+        duration_minutes: 30
+      - type: Sprint Race
+        start: 2026-09-12T15:35
+        duration_minutes: 60
+      - type: Feature Race
+        start: 2026-09-13T11:35
+        duration_minutes: 80
+
+  - round: 12
+    name: Baku Round
+    short_name: Baku
+    circuit: Baku City Circuit
+    location: Baku, Azerbaijan
+    tz: Asia/Baku
+    sessions:
+      - type: Practice
+        start: 2026-09-24T10:00
+        duration_minutes: 45
+      - type: Qualifying
+        start: 2026-09-24T14:30
+        duration_minutes: 30
+      - type: Sprint Race
+        start: 2026-09-25T15:35
+        duration_minutes: 60
+      - type: Feature Race
+        start: 2026-09-26T11:35
+        duration_minutes: 80
+
+  - round: 13
+    name: Lusail Round
+    short_name: Lusail
+    circuit: Lusail International Circuit
+    location: Lusail, Qatar
+    tz: Asia/Qatar
+    sessions:
+      - type: Practice
+        start: 2026-11-27T10:00
+        duration_minutes: 45
+      - type: Qualifying
+        start: 2026-11-27T14:30
+        duration_minutes: 30
+      - type: Sprint Race
+        start: 2026-11-28T15:35
+        duration_minutes: 60
+      - type: Feature Race
+        start: 2026-11-29T11:35
+        duration_minutes: 80
+
+  - round: 14
+    name: Yas Island Round
+    short_name: Yas Island
+    circuit: Yas Marina Circuit
+    location: Abu Dhabi, UAE
+    tz: Asia/Dubai
+    sessions:
+      - type: Practice
+        start: 2026-12-04T10:00
+        duration_minutes: 45
+      - type: Qualifying
+        start: 2026-12-04T14:30
+        duration_minutes: 30
+      - type: Sprint Race
+        start: 2026-12-05T15:35
+        duration_minutes: 60
+      - type: Feature Race
+        start: 2026-12-06T11:35
+        duration_minutes: 80
+

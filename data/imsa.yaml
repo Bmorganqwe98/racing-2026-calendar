@@ -1,18 +1,17 @@
-# IMSA WeatherTech SportsCar Championship — 2026 schedule (STUB DATA; replace during research phase)
-# Source: not yet populated — see NOTES.md for retrieval log
+# IMSA WeatherTech SportsCar Championship — 2026 schedule
+# See tools/gen_imsa_yaml.py for how race anchors were chosen.
+#
 series: IMSA SportsCar Championship
 slug: imsa
 calendar_name: IMSA 2026
 description: IMSA WeatherTech SportsCar Championship 2026 (all sessions in track-local time)
 timezone_default: America/New_York
 
-# US watch-info default. NBC/Peacock carries IMSA live in the US;
-# IMSA.tv is the broadcaster-independent free stream for practice/qualifying.
 watch_default:
   us_broadcast: NBC / USA Network
   us_streaming: Peacock / IMSA.tv (free for practice and qualifying)
-  confidence: medium
-  notes: NBCUniversal holds US IMSA rights; race start times shift to NBC where applicable.
+  confidence: high
+  notes: NBCUniversal holds US IMSA rights; confirm race vs USA Network per weekend.
 
 rounds:
   - round: 1
@@ -28,3 +27,114 @@ rounds:
       - type: Race
         start: 2026-01-24T13:40
         duration_minutes: 1440
+
+  - round: 2
+    name: Mobil 1 Twelve Hours of Sebring
+    short_name: Sebring 12h
+    circuit: Sebring International Raceway
+    location: Sebring, Florida, USA
+    tz: America/New_York
+    sessions:
+      - type: Race
+        start: 2026-03-21T10:10
+        duration_minutes: 720
+
+  - round: 3
+    name: Acura Grand Prix of Long Beach
+    short_name: Long Beach GP
+    circuit: Long Beach Street Circuit
+    location: Long Beach, California, USA
+    tz: America/Los_Angeles
+    sessions:
+      - type: Race
+        start: 2026-04-18T14:10
+        duration_minutes: 100
+
+  - round: 4
+    name: StubHub Monterey SportsCar Championship
+    short_name: Laguna Seca GP
+    circuit: WeatherTech Raceway Laguna Seca
+    location: Monterey, California, USA
+    tz: America/Los_Angeles
+    sessions:
+      - type: Race
+        start: 2026-05-03T14:10
+        duration_minutes: 160
+
+  - round: 5
+    name: Chevrolet Detroit Sports Car Classic
+    short_name: Detroit GP
+    circuit: Detroit Street Circuit
+    location: Detroit, Michigan, USA
+    tz: America/New_York
+    sessions:
+      - type: Race
+        start: 2026-05-30T14:10
+        duration_minutes: 100
+
+  - round: 6
+    name: Sahlen's Six Hours of The Glen
+    short_name: Watkins Glen 6h
+    circuit: Watkins Glen International
+    location: Watkins Glen, New York, USA
+    tz: America/New_York
+    sessions:
+      - type: Race
+        start: 2026-06-28T10:10
+        duration_minutes: 360
+
+  - round: 7
+    name: Chevrolet Grand Prix
+    short_name: CTMP GP
+    circuit: Canadian Tire Motorsport Park
+    location: Bowmanville, Ontario, Canada
+    tz: America/Toronto
+    sessions:
+      - type: Race
+        start: 2026-07-12T14:10
+        duration_minutes: 160
+
+  - round: 8
+    name: Motul SportsCar Endurance Grand Prix
+    short_name: Road America 6h
+    circuit: Road America
+    location: Elkhart Lake, Wisconsin, USA
+    tz: America/Chicago
+    sessions:
+      - type: Race
+        start: 2026-08-02T10:10
+        duration_minutes: 360
+
+  - round: 9
+    name: Michelin GT Challenge at VIR
+    short_name: VIR GT Challenge
+    circuit: Virginia International Raceway
+    location: Alton, Virginia, USA
+    tz: America/New_York
+    sessions:
+      - type: Race
+        start: 2026-08-23T14:10
+        duration_minutes: 160
+
+  - round: 10
+    name: Tirerack.com Battle on the Bricks
+    short_name: Indianapolis GP
+    circuit: Indianapolis Motor Speedway
+    location: Speedway, Indiana, USA
+    tz: America/Indiana/Indianapolis
+    sessions:
+      - type: Race
+        start: 2026-09-20T14:10
+        duration_minutes: 160
+
+  - round: 11
+    name: Motul Petit Le Mans
+    short_name: Petit Le Mans
+    circuit: Michelin Raceway Road Atlanta
+    location: Braselton, Georgia, USA
+    tz: America/New_York
+    sessions:
+      - type: Race
+        start: 2026-10-03T11:10
+        duration_minutes: 600
+

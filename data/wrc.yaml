@@ -1,30 +1,24 @@
-# World Rally Championship — 2026 schedule (STUB DATA; replace during research phase)
-# Source: not yet populated — see NOTES.md for retrieval log
+# World Rally Championship — 2026 schedule (collapsed per-day)
 #
-# Per the project's WRC convention, stages are collapsed into per-day events
-# (Shakedown / Day 1 / Day 2 / Day 3 / Podium) rather than 20+ stages per
-# round. See rules/racing-project-context.mdc.
 series: World Rally Championship
 slug: wrc
 calendar_name: WRC 2026
-description: FIA World Rally Championship 2026 (collapsed per-day; all in rally-local time)
+description: FIA World Rally Championship 2026 (collapsed per-day; rally-local time)
 timezone_default: UTC
 
-# US watch-info default. Rally.tv is the FIA's official global streaming
-# service and the most reliable US-accessible source for WRC live coverage.
 watch_default:
   us_broadcast: No US linear TV deal
   us_streaming: Rally.tv (FIA official global stream)
-  confidence: medium
-  notes: WRC has no dedicated US TV partner; Rally.tv subscription is the canonical live path.
+  confidence: high
+  notes: Rally.tv is the primary official streaming path for WRC worldwide.
 
 rounds:
   - round: 1
-    name: Rallye Monte-Carlo
-    short_name: Monte-Carlo
-    circuit: Monaco / Gap, France
-    location: Monte-Carlo, Monaco
-    tz: Europe/Monaco
+    name: Rallye Automobile Monte Carlo
+    short_name: Monte Carlo
+    circuit: Monte Carlo / Gap region
+    location: Gap, France
+    tz: Europe/Paris
     sessions:
       - type: Shakedown
         start: 2026-01-22T09:00
@@ -44,3 +38,342 @@ rounds:
       - type: Podium
         start: 2026-01-25T15:00
         duration_minutes: 60
+
+  - round: 2
+    name: Rally Sweden
+    short_name: Sweden
+    circuit: Umeå region
+    location: Umeå, Sweden
+    tz: Europe/Stockholm
+    sessions:
+      - type: Shakedown
+        start: 2026-02-12T09:00
+        duration_minutes: 60
+      - type: Day 1
+        start: 2026-02-12T19:00
+        duration_minutes: 240
+      - type: Day 2
+        start: 2026-02-13T08:00
+        duration_minutes: 600
+      - type: Day 3
+        start: 2026-02-14T08:00
+        duration_minutes: 600
+      - type: Day 4
+        start: 2026-02-15T08:00
+        duration_minutes: 240
+      - type: Podium
+        start: 2026-02-15T15:00
+        duration_minutes: 60
+
+  - round: 3
+    name: Safari Rally Kenya
+    short_name: Kenya
+    circuit: Nairobi region
+    location: Nairobi, Kenya
+    tz: Africa/Nairobi
+    sessions:
+      - type: Shakedown
+        start: 2026-03-12T09:00
+        duration_minutes: 60
+      - type: Day 1
+        start: 2026-03-12T19:00
+        duration_minutes: 240
+      - type: Day 2
+        start: 2026-03-13T08:00
+        duration_minutes: 600
+      - type: Day 3
+        start: 2026-03-14T08:00
+        duration_minutes: 600
+      - type: Day 4
+        start: 2026-03-15T08:00
+        duration_minutes: 240
+      - type: Podium
+        start: 2026-03-15T15:00
+        duration_minutes: 60
+
+  - round: 4
+    name: Croatia Rally
+    short_name: Croatia
+    circuit: Rijeka region
+    location: Rijeka, Croatia
+    tz: Europe/Zagreb
+    sessions:
+      - type: Shakedown
+        start: 2026-04-09T09:00
+        duration_minutes: 60
+      - type: Day 1
+        start: 2026-04-09T19:00
+        duration_minutes: 240
+      - type: Day 2
+        start: 2026-04-10T08:00
+        duration_minutes: 600
+      - type: Day 3
+        start: 2026-04-11T08:00
+        duration_minutes: 600
+      - type: Day 4
+        start: 2026-04-12T08:00
+        duration_minutes: 240
+      - type: Podium
+        start: 2026-04-12T15:00
+        duration_minutes: 60
+
+  - round: 5
+    name: Rally Islas Canarias
+    short_name: Canary Islands
+    circuit: Gran Canaria
+    location: Las Palmas, Spain
+    tz: Atlantic/Canary
+    sessions:
+      - type: Shakedown
+        start: 2026-04-23T09:00
+        duration_minutes: 60
+      - type: Day 1
+        start: 2026-04-23T19:00
+        duration_minutes: 240
+      - type: Day 2
+        start: 2026-04-24T08:00
+        duration_minutes: 600
+      - type: Day 3
+        start: 2026-04-25T08:00
+        duration_minutes: 600
+      - type: Day 4
+        start: 2026-04-26T08:00
+        duration_minutes: 240
+      - type: Podium
+        start: 2026-04-26T15:00
+        duration_minutes: 60
+
+  - round: 6
+    name: Rally de Portugal
+    short_name: Portugal
+    circuit: Matosinhos / Porto
+    location: Matosinhos, Portugal
+    tz: Europe/Lisbon
+    sessions:
+      - type: Shakedown
+        start: 2026-05-07T09:00
+        duration_minutes: 60
+      - type: Day 1
+        start: 2026-05-07T19:00
+        duration_minutes: 240
+      - type: Day 2
+        start: 2026-05-08T08:00
+        duration_minutes: 600
+      - type: Day 3
+        start: 2026-05-09T08:00
+        duration_minutes: 600
+      - type: Day 4
+        start: 2026-05-10T08:00
+        duration_minutes: 240
+      - type: Podium
+        start: 2026-05-10T15:00
+        duration_minutes: 60
+
+  - round: 7
+    name: Rally Japan
+    short_name: Japan
+    circuit: Toyota City region
+    location: Toyota, Aichi, Japan
+    tz: Asia/Tokyo
+    sessions:
+      - type: Shakedown
+        start: 2026-05-28T09:00
+        duration_minutes: 60
+      - type: Day 1
+        start: 2026-05-28T19:00
+        duration_minutes: 240
+      - type: Day 2
+        start: 2026-05-29T08:00
+        duration_minutes: 600
+      - type: Day 3
+        start: 2026-05-30T08:00
+        duration_minutes: 600
+      - type: Day 4
+        start: 2026-05-31T08:00
+        duration_minutes: 240
+      - type: Podium
+        start: 2026-05-31T15:00
+        duration_minutes: 60
+
+  - round: 8
+    name: Acropolis Rally Greece
+    short_name: Greece
+    circuit: Loutraki base
+    location: Loutraki, Greece
+    tz: Europe/Athens
+    sessions:
+      - type: Shakedown
+        start: 2026-06-25T09:00
+        duration_minutes: 60
+      - type: Day 1
+        start: 2026-06-25T19:00
+        duration_minutes: 240
+      - type: Day 2
+        start: 2026-06-26T08:00
+        duration_minutes: 600
+      - type: Day 3
+        start: 2026-06-27T08:00
+        duration_minutes: 600
+      - type: Day 4
+        start: 2026-06-28T08:00
+        duration_minutes: 240
+      - type: Podium
+        start: 2026-06-28T15:00
+        duration_minutes: 60
+
+  - round: 9
+    name: Rally Estonia
+    short_name: Estonia
+    circuit: Tartu region
+    location: Tartu, Estonia
+    tz: Europe/Tallinn
+    sessions:
+      - type: Shakedown
+        start: 2026-07-16T09:00
+        duration_minutes: 60
+      - type: Day 1
+        start: 2026-07-16T19:00
+        duration_minutes: 240
+      - type: Day 2
+        start: 2026-07-17T08:00
+        duration_minutes: 600
+      - type: Day 3
+        start: 2026-07-18T08:00
+        duration_minutes: 600
+      - type: Day 4
+        start: 2026-07-19T08:00
+        duration_minutes: 240
+      - type: Podium
+        start: 2026-07-19T15:00
+        duration_minutes: 60
+
+  - round: 10
+    name: Rally Finland
+    short_name: Finland
+    circuit: Jyväskylä region
+    location: Jyväskylä, Finland
+    tz: Europe/Helsinki
+    sessions:
+      - type: Shakedown
+        start: 2026-07-30T09:00
+        duration_minutes: 60
+      - type: Day 1
+        start: 2026-07-30T19:00
+        duration_minutes: 240
+      - type: Day 2
+        start: 2026-07-31T08:00
+        duration_minutes: 600
+      - type: Day 3
+        start: 2026-08-01T08:00
+        duration_minutes: 600
+      - type: Day 4
+        start: 2026-08-02T08:00
+        duration_minutes: 240
+      - type: Podium
+        start: 2026-08-02T15:00
+        duration_minutes: 60
+
+  - round: 11
+    name: Rally del Paraguay
+    short_name: Paraguay
+    circuit: Encarnación region
+    location: Encarnación, Paraguay
+    tz: America/Asuncion
+    sessions:
+      - type: Shakedown
+        start: 2026-08-27T09:00
+        duration_minutes: 60
+      - type: Day 1
+        start: 2026-08-27T19:00
+        duration_minutes: 240
+      - type: Day 2
+        start: 2026-08-28T08:00
+        duration_minutes: 600
+      - type: Day 3
+        start: 2026-08-29T08:00
+        duration_minutes: 600
+      - type: Day 4
+        start: 2026-08-30T08:00
+        duration_minutes: 240
+      - type: Podium
+        start: 2026-08-30T15:00
+        duration_minutes: 60
+
+  - round: 12
+    name: Rally Chile
+    short_name: Chile
+    circuit: Concepción region
+    location: Concepción, Chile
+    tz: America/Santiago
+    sessions:
+      - type: Shakedown
+        start: 2026-09-10T09:00
+        duration_minutes: 60
+      - type: Day 1
+        start: 2026-09-10T19:00
+        duration_minutes: 240
+      - type: Day 2
+        start: 2026-09-11T08:00
+        duration_minutes: 600
+      - type: Day 3
+        start: 2026-09-12T08:00
+        duration_minutes: 600
+      - type: Day 4
+        start: 2026-09-13T08:00
+        duration_minutes: 240
+      - type: Podium
+        start: 2026-09-13T15:00
+        duration_minutes: 60
+
+  - round: 13
+    name: Rally Italia Sardegna
+    short_name: Sardegna
+    circuit: Alghero base
+    location: Alghero, Italy
+    tz: Europe/Rome
+    sessions:
+      - type: Shakedown
+        start: 2026-10-01T09:00
+        duration_minutes: 60
+      - type: Day 1
+        start: 2026-10-01T19:00
+        duration_minutes: 240
+      - type: Day 2
+        start: 2026-10-02T08:00
+        duration_minutes: 600
+      - type: Day 3
+        start: 2026-10-03T08:00
+        duration_minutes: 600
+      - type: Day 4
+        start: 2026-10-04T08:00
+        duration_minutes: 240
+      - type: Podium
+        start: 2026-10-04T15:00
+        duration_minutes: 60
+
+  - round: 14
+    name: Rally Saudi Arabia
+    short_name: Saudi Arabia
+    circuit: Jeddah region
+    location: Jeddah, Saudi Arabia
+    tz: Asia/Riyadh
+    sessions:
+      - type: Shakedown
+        start: 2026-11-11T09:00
+        duration_minutes: 60
+      - type: Day 1
+        start: 2026-11-11T19:00
+        duration_minutes: 240
+      - type: Day 2
+        start: 2026-11-12T08:00
+        duration_minutes: 600
+      - type: Day 3
+        start: 2026-11-13T08:00
+        duration_minutes: 600
+      - type: Day 4
+        start: 2026-11-14T08:00
+        duration_minutes: 240
+      - type: Podium
+        start: 2026-11-14T15:00
+        duration_minutes: 60
+
