@@ -6,6 +6,14 @@ calendar_name: IMSA 2026
 description: IMSA WeatherTech SportsCar Championship 2026 (all sessions in track-local time)
 timezone_default: America/New_York
 
+# US watch-info default. NBC/Peacock carries IMSA live in the US;
+# IMSA.tv is the broadcaster-independent free stream for practice/qualifying.
+watch_default:
+  us_broadcast: NBC / USA Network
+  us_streaming: Peacock / IMSA.tv (free for practice and qualifying)
+  confidence: medium
+  notes: NBCUniversal holds US IMSA rights; race start times shift to NBC where applicable.
+
 rounds:
   - round: 1
     name: Rolex 24 at Daytona

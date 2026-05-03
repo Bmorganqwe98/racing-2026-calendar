@@ -102,6 +102,39 @@ The user has explicitly asked that history and context of all schedule edits sta
 3. UID-affecting changes (renaming a session type, renumbering rounds) get a `CHANGELOG`-style entry in `NOTES.md` so subscribers can be warned.
 4. When starting a new chat, the AI should **read `NOTES.md` first** before changing any schedule — it captures the why behind current data and avoids re-research that's already been done.
 
+## Watch info schema and provenance
+
+Each event description includes a "Where to watch (US)" line plus a Time-in-Eastern line. The watch info comes from optional `watch_default:` (series level) and `watch:` (session level) blocks in YAML, resolved by `resolve_watch()` in `generate.py`.
+
+Schema for both blocks:
+
+```yaml
+watch_default:                 # or `watch:` at the session level
+  us_broadcast: <free text, e.g. "ESPN / ESPN2" or "No US linear TV deal">
+  us_streaming: <free text, e.g. "ESPN+ / F1 TV Pro">
+  confidence: high | medium | low
+  notes: <free text, optional>
+```
+
+Resolution order (no merging):
+1. session-level `watch:` if present → wins outright.
+2. series-level `watch_default:` if present → series-wide default.
+3. neither → `_format_watch_line()` emits the canonical TBD text.
+
+Provenance rules — same shape as schedule provenance:
+
+- **high** confidence requires a 2026-specific source URL + retrieval date logged in `NOTES.md` under "Watch info provenance rules → Per-series watch info status".
+- **medium** is the default for stub data and multi-year deals not re-verified for 2026.
+- **low** is rumor/extrapolation/TBD.
+- Never mark `high` without filling in the per-series table in `NOTES.md`.
+- US-focused only by design (the user is in EST). Other-region broadcaster info is out of scope unless the user requests it.
+
+When updating watch info:
+- Edit the YAML.
+- Update the per-series row in `NOTES.md` (source, retrieval date, confidence, next verification date).
+- Run `python -m pytest` to confirm the description tests still pass.
+- Run `python generate.py` and spot-check the relevant `.ics` file's DESCRIPTION block.
+
 ## Tool preferences for this project
 
 - For schedule research, prefer the `wiki-research-tool` MCP (Wikipedia season pages are the most reliable consolidated source for round-by-round data).
@@ -111,3 +144,29 @@ The user has explicitly asked that history and context of all schedule edits sta
 ## Out-of-scope guard
 
 If a request mentions German learning, Anki, audio fiction, Nordson measurement, LOUD/Supreme Commander, real-estate / housing planning, or any other unrelated domain, treat it as out of scope for this project and ask the user whether they meant to switch projects. Those topics are explicitly excluded here.
+
+## Privacy posture (do not change without confirmation)
+
+The owner has explicitly chosen the following privacy stance. Future AI sessions must preserve it unless the owner asks for a change.
+
+**Project intent:** personal use only. Even though the GitHub repo and Pages site are public (because that is what makes calendar subscriptions work), the calendar is not built for resale, redistribution, or any commercial purpose. Treat new feature requests through the lens of "would a personal user find this useful?" rather than "would this attract subscribers?".
+
+**Repository visibility:** public, intentionally. Do not propose making it private without flagging the GitHub Pages tradeoff explicitly (Pages on private repos requires a paid plan; Cloudflare Pages or similar is the alternative).
+
+**Commit identity:** anonymized per-project. The local Git config in this repository points `user.name` to the GitHub handle (`Bmorganqwe98`) and `user.email` to the GitHub no-reply address (the `<id>+<handle>@users.noreply.github.com` form). Verify with `git config --local user.name` / `git config --local user.email`. Never run `git commit` if `user.email` resolves to anything other than that no-reply address, or if `user.name` is anything other than the GitHub handle. If a non-noreply identity is configured, re-set `--local` config first.
+
+**No personal data in published artifacts:** never put the owner's real name, real email, address, phone number, or any other personally identifying information in:
+- `data/*.yaml`
+- `generate.py` or anything else that lands in `output/`
+- commit messages, branch names, tags, or PR titles
+- `README.md`, `NOTES.md`, or any markdown file that ships with the repo
+
+**License posture:** MIT, with the explicit note that personal-use intent is documented in `README.md`. Do not switch to a non-commercial license without confirmation — it has caveats (incompatibility with some platforms, ambiguous "commercial use" definitions). If asked, present options rather than choosing.
+
+**Pre-push checklist (run this mentally before every push):**
+1. `git config --local user.email` returns the no-reply address.
+2. `git log -1 --format="%an <%ae>"` shows the anonymized identity, not the real one.
+3. No personal email addresses in the staged diff. Negative-style check (no real-name strings hardcoded into the rule):
+   `git diff --staged | rg -i "[a-z0-9._%+-]+@" | rg -v "users\.noreply\.github\.com"` returns no output.
+4. No local file paths in the staged diff: `git diff --staged | rg -i "C:\\\\Users\\\\|/Users/|OneDrive"` returns no output.
+5. No new secrets/API keys/passwords in code or YAML.

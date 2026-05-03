@@ -6,6 +6,14 @@ calendar_name: F1 2026
 description: FIA Formula One World Championship 2026 (all sessions in track-local time)
 timezone_default: UTC
 
+# US watch-info default (applies to every session unless a session has its own `watch:` block).
+# Update with confidence: high once 2026 confirmations land; see NOTES.md.
+watch_default:
+  us_broadcast: ESPN / ESPN2
+  us_streaming: ESPN+ / F1 TV Pro
+  confidence: medium
+  notes: ESPN holds US F1 broadcast rights through the 2026 season.
+
 rounds:
   - round: 1
     name: Australian Grand Prix

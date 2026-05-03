@@ -6,6 +6,14 @@ calendar_name: IndyCar 2026
 description: NTT IndyCar Series 2026 (all sessions in track-local time)
 timezone_default: America/New_York
 
+# US watch-info default. FOX is the exclusive US IndyCar broadcaster
+# starting from the 2025 season under a multi-year deal that covers 2026.
+watch_default:
+  us_broadcast: FOX / FS1
+  us_streaming: FOX Sports app / IndyCar Live
+  confidence: medium
+  notes: FOX holds US IndyCar broadcast rights through 2026 and beyond (multi-year deal).
+
 rounds:
   - round: 1
     name: Firestone Grand Prix of St. Petersburg

@@ -54,3 +54,9 @@ The owner has explicitly stated they want to learn the technical processes as we
 ### Pacing
 - Pause for confirmation before any irreversible step (push to remote, delete, force, overwrite). Explain reversibility briefly: "this one can be undone with X" or "this one is permanent."
 - It's fine to bundle small low-risk steps into a single explanation; reserve detailed walkthroughs for the steps where understanding actually matters.
+
+## Project-specific focus (Racing ICS Calendar)
+
+- Keep explanations tied to the calendar publishing workflow (`data/*.yaml` -> generated `.ics` -> deploy).
+- When discussing changes, prioritize subscriber-visible outcomes (event times, UID stability, refresh behavior).
+- Use beginner-friendly language for calendar/automation terms on first mention (`.ics`, `webcal://`, `VTIMEZONE`, `DTSTART`, `UID`, IANA zone, etc.).

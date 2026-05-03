@@ -6,6 +6,14 @@ calendar_name: WEC 2026
 description: FIA World Endurance Championship 2026 (all sessions in track-local time)
 timezone_default: UTC
 
+# US watch-info default. MAX (formerly HBO Max) carries WEC live in the US;
+# the FIA WEC App is the broadcaster-agnostic backup.
+watch_default:
+  us_broadcast: MAX (B/R Sports tier)
+  us_streaming: MAX / FIA WEC App
+  confidence: medium
+  notes: MAX holds US WEC rights; the FIA WEC App is a global backup with subscription.
+
 rounds:
   - round: 1
     name: Qatar 1812 km

@@ -152,12 +152,92 @@ live, and you're done.
 
 ---
 
-## Privacy
+## Privacy checklist (one-time GitHub setup)
 
-GitHub Pages is public. The 2026 motorsport schedule isn't sensitive data,
-but anything you put into `data/*.yaml` is publicly viewable. Don't paste
-private information into the YAML.
+You only need to do this once per GitHub account. Each link goes straight
+to the relevant settings page — you don't need to remember any paths.
+
+### Account-level (protects every repo, not just this one)
+
+- [ ] **Keep my email addresses private** — [github.com/settings/emails](https://github.com/settings/emails). Tick this checkbox so commits expose only your `…@users.noreply.github.com` address, never your real one.
+- [ ] **Block command line pushes that expose my email** — same page, second checkbox. This is the seatbelt: if any future commit ever has your real email on it, GitHub refuses to accept the push instead of letting it leak.
+- [ ] **Two-factor authentication enabled** — [github.com/settings/security](https://github.com/settings/security). If your password ever leaks, 2FA is what stops someone else logging in.
+
+### Repository-level (this repo only)
+
+- [ ] **Disable Issues** — [Settings → General](https://github.com/Bmorganqwe98/racing-2026-calendar/settings) → scroll to **Features** → uncheck **Issues**. Personal calendar repos don't need a public bug tracker.
+- [ ] **Disable Wikis** — same Features section → uncheck **Wikis**. Unused, just an extra surface to maintain.
+- [ ] **Disable Projects** — same Features section → uncheck **Projects**. Unused.
+- [ ] **Confirm Pages source is "GitHub Actions"** — [Settings → Pages](https://github.com/Bmorganqwe98/racing-2026-calendar/settings/pages). Should already be set; re-verify if you ever rename the repo.
+- [ ] **(Optional)** Disable forking — [Settings → General](https://github.com/Bmorganqwe98/racing-2026-calendar/settings) → uncheck **Allow forking**. Forks aren't a privacy issue (they only copy public content), but turning this off makes the repo slightly less discoverable.
+
+After ticking these, your repo's public face shows only: code, the Pages
+site, and the README. No issues page, no wiki, no project boards.
+
+## Pre-push privacy checklist (every time you push)
+
+Two terminal commands; takes about 5 seconds.
+
+```bash
+# 1) Confirm git identity for this repo is still anonymized.
+git config --local user.email
+# expected: 219371880+Bmorganqwe98@users.noreply.github.com
+
+# 2) Confirm the most recent commit's author is anonymized.
+git log -1 --format="%an <%ae>"
+# expected: Bmorganqwe98 <219371880+Bmorganqwe98@users.noreply.github.com>
+```
+
+If either output ever shows your real name, or any email address other
+than the `…@users.noreply.github.com` form, **do not push**. Re-set the
+local config and amend the commit:
+
+```bash
+git config --local user.name  "Bmorganqwe98"
+git config --local user.email "219371880+Bmorganqwe98@users.noreply.github.com"
+git commit --amend --reset-author --no-edit
+```
+
+The "Block command line pushes that expose my email" account setting is
+your safety net: even if you forget to check, GitHub will refuse the push
+instead of leaking the real email.
+
+## Privacy and use intent
+
+This project is published publicly **only because GitHub Pages requires a
+public repo for free `.ics` subscription URLs**, not because the contents
+are meant for general distribution. It is a **personal-use calendar**: I
+publish it for myself, and anyone who happens to find it is welcome to
+subscribe, but the project is not advertised, not maintained on a service
+schedule, and not built for resale or any commercial purpose.
+
+What is and is not exposed:
+
+| Visible to anyone on the internet | Not exposed |
+|---|---|
+| The Python source (`generate.py`), the YAML schedules (`data/*.yaml`), and the published `.ics` files at the GitHub Pages URL | The author's real name and real email — commits use a GitHub no-reply address (see below) |
+| The repository name, the commit history, and any text inside committed files | The author's other projects, GitHub private repos, account email, or billing info |
+| The published HTML landing page | Anything placed in `.gitignore` (output cache, OneDrive Cursor state, local test caches, etc.) |
+
+If you fork this repo for your own personal calendar:
+
+1. Replace `Bmorganqwe98` and the no-reply email in `generate.py` and any
+   subscribe URLs with your own.
+2. **Do not paste any personal information** (real name, address, phone,
+   email, etc.) into `data/*.yaml`, `NOTES.md`, or any committed file —
+   public Pages means anyone can read those.
+3. Consider enabling **GitHub → Settings → Emails → "Keep my email
+   addresses private"** and **"Block command line pushes that expose my
+   email"** before your first push. This is free and prevents accidental
+   email leaks.
 
 ## License
 
-[MIT](LICENSE) — do whatever you like with the code or the schedules.
+[MIT](LICENSE) — covers the code only. The published `.ics` schedules are
+public information sourced from official series sites and Wikipedia.
+
+The MIT license technically permits commercial reuse of the code; if that
+matters to you and you'd prefer a non-commercial-only stance, swap it for
+a license like CC BY-NC-4.0 (with caveats: NC licenses are sometimes
+incompatible with code-hosting platforms and the definition of "commercial"
+is fuzzy). For personal use, MIT is fine and is the project default.

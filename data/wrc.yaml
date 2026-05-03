@@ -10,6 +10,14 @@ calendar_name: WRC 2026
 description: FIA World Rally Championship 2026 (collapsed per-day; all in rally-local time)
 timezone_default: UTC
 
+# US watch-info default. Rally.tv is the FIA's official global streaming
+# service and the most reliable US-accessible source for WRC live coverage.
+watch_default:
+  us_broadcast: No US linear TV deal
+  us_streaming: Rally.tv (FIA official global stream)
+  confidence: medium
+  notes: WRC has no dedicated US TV partner; Rally.tv subscription is the canonical live path.
+
 rounds:
   - round: 1
     name: Rallye Monte-Carlo

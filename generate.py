@@ -75,6 +75,15 @@ FALLBACK_DURATION_MINUTES = 60
 
 TBA_TOKENS = {"tba", "tbc", "tbd"}
 
+EASTERN_TZ = ZoneInfo("America/New_York")
+
+WATCH_TBD_LINE = (
+    "Where to watch (US): not yet sourced. "
+    "Check official broadcaster listings closer to the event date."
+)
+
+VALID_WATCH_CONFIDENCE = {"high", "medium", "low"}
+
 # When DTSTART is TBA, we emit an all-day event on this fallback date so the
 # event is visible. Each TBA event also carries a note in DESCRIPTION so the
 # user knows the time is unconfirmed.
@@ -213,6 +222,70 @@ def round_earliest_date(round_data: Dict[str, Any]) -> Optional[date]:
     return earliest.date() if earliest else None
 
 
+def format_eastern(aware_dt: datetime) -> str:
+    """
+    Render a tz-aware datetime in Eastern time (e.g. 'Sat Mar 7, 11:00 PM EST').
+
+    Always uses America/New_York; the printed abbreviation is whatever the
+    zone is at that instant (EST in winter, EDT during DST). This keeps the
+    description text honest with what the calendar client will display when
+    the user is in the Eastern timezone.
+    """
+    eastern = aware_dt.astimezone(EASTERN_TZ)
+    weekday = eastern.strftime("%a")
+    month = eastern.strftime("%b")
+    day = eastern.day
+    hour_12 = eastern.hour % 12 or 12
+    minute = eastern.minute
+    am_pm = "AM" if eastern.hour < 12 else "PM"
+    abbr = eastern.strftime("%Z")
+    return f"{weekday} {month} {day}, {hour_12}:{minute:02d} {am_pm} {abbr}"
+
+
+def resolve_watch(
+    session: Dict[str, Any],
+    series_data: Dict[str, Any],
+) -> Optional[Dict[str, Any]]:
+    """
+    Pick US watch info for a session.
+
+    Resolution order (no merging — each level is all-or-nothing):
+    1. session-level `watch:` block (most specific override)
+    2. series-level `watch_default:` block (fallback for the whole series)
+    3. None (caller renders an explicit TBD line)
+    """
+    session_watch = session.get("watch") if session else None
+    if session_watch:
+        return session_watch
+    series_watch = series_data.get("watch_default") if series_data else None
+    if series_watch:
+        return series_watch
+    return None
+
+
+def _format_watch_line(watch: Optional[Dict[str, Any]]) -> str:
+    """Render the 'Where to watch' line(s) for a session description."""
+    if not watch:
+        return WATCH_TBD_LINE
+    parts: List[str] = []
+    if watch.get("us_broadcast"):
+        parts.append(str(watch["us_broadcast"]))
+    if watch.get("us_streaming"):
+        parts.append(f"streaming: {watch['us_streaming']}")
+    confidence_raw = str(watch.get("confidence", "")).strip().lower()
+    confidence_suffix = (
+        f" ({confidence_raw} confidence)"
+        if confidence_raw in VALID_WATCH_CONFIDENCE
+        else ""
+    )
+    primary = " | ".join(parts) if parts else "TBD"
+    line = f"Where to watch (US): {primary}{confidence_suffix}"
+    notes = str(watch.get("notes", "")).strip()
+    if notes:
+        line += f"\nWatch notes: {notes}"
+    return line
+
+
 def build_session_event(
     session: Dict[str, Any],
     round_data: Dict[str, Any],
@@ -249,7 +322,13 @@ def build_session_event(
         event.add("dtend", anchor + timedelta(days=1))
         event.add(
             "description",
-            _build_description(series_data, round_data, session_type, tba=True),
+            _build_description(
+                series_data,
+                round_data,
+                session_type,
+                tba=True,
+                session=session,
+            ),
         )
         return event
 
@@ -263,7 +342,14 @@ def build_session_event(
     event.add("dtend", aware_start + duration)
     event.add(
         "description",
-        _build_description(series_data, round_data, session_type, tba=False),
+        _build_description(
+            series_data,
+            round_data,
+            session_type,
+            tba=False,
+            aware_start=aware_start,
+            session=session,
+        ),
     )
 
     return event
@@ -284,9 +370,24 @@ def _build_description(
     session_type: str,
     *,
     tba: bool,
+    aware_start: Optional[datetime] = None,
+    session: Optional[Dict[str, Any]] = None,
 ) -> str:
-    """Rich DESCRIPTION text for the event, including provenance hint."""
-    lines = [
+    """
+    Rich DESCRIPTION text for the event.
+
+    Layout (per line, separated by '\\n' which most calendar clients render
+    as paragraph breaks):
+        Series: <name>
+        Round <n>: <round name>
+        Session: <type>
+        Time in Eastern: <weekday Mon D, H:MM AM/PM EST/EDT>   (skipped on TBA)
+        Time TBA - placeholder all-day...                       (TBA only)
+        Where to watch (US): <broadcaster> | streaming: <stream> (<confidence>)
+        Watch notes: <free text>                                (only if provided)
+        Generated from data/<slug>.yaml. See NOTES.md...
+    """
+    lines: List[str] = [
         f"Series: {series_data.get('series', series_data['slug'])}",
         f"Round {round_data['round']}: {round_data['name']}",
         f"Session: {session_type}",
@@ -296,6 +397,11 @@ def _build_description(
             "Time TBA - this is a placeholder all-day event. "
             "It will update to the correct time once published."
         )
+    elif aware_start is not None:
+        lines.append(f"Time in Eastern: {format_eastern(aware_start)}")
+
+    lines.append(_format_watch_line(resolve_watch(session or {}, series_data)))
+
     lines.append(
         "Generated from data/{slug}.yaml. See NOTES.md for source provenance.".format(
             slug=series_data["slug"]

@@ -8,9 +8,11 @@ handling, round-trip parse) rather than exercising every code path.
 
 from __future__ import annotations
 
+import re
 import sys
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import pytest
 from icalendar import Calendar
@@ -95,6 +97,124 @@ def test_tba_session_emits_all_day_event(f1_series, f1_round) -> None:
     ical_text = tba_event.to_ical().decode("utf-8")
     assert "VALUE=DATE" in ical_text
     assert "Time TBA" in ical_text
+
+
+def test_format_eastern_winter_returns_est() -> None:
+    """Outside US DST, the printed abbreviation must be EST."""
+    melbourne = ZoneInfo("Australia/Melbourne")
+    aware = datetime(2026, 3, 8, 15, 0, tzinfo=melbourne)
+    # March 8 15:00 AEDT (UTC+11) = March 8 04:00 UTC. US DST begins 07:00 UTC
+    # that same day, so at 04:00 UTC NY is still on EST.
+    assert g.format_eastern(aware) == "Sat Mar 7, 11:00 PM EST"
+
+
+def test_format_eastern_summer_returns_edt() -> None:
+    """During US DST, the printed abbreviation must be EDT."""
+    paris = ZoneInfo("Europe/Paris")
+    aware = datetime(2026, 7, 5, 15, 0, tzinfo=paris)
+    # July 5 15:00 CEST (UTC+2) = 13:00 UTC = 09:00 EDT.
+    assert g.format_eastern(aware) == "Sun Jul 5, 9:00 AM EDT"
+
+
+def test_resolve_watch_session_overrides_series() -> None:
+    series = {"watch_default": {"us_broadcast": "Default Channel"}}
+    session = {"watch": {"us_broadcast": "Override Channel"}}
+    assert g.resolve_watch(session, series) == {"us_broadcast": "Override Channel"}
+
+
+def test_resolve_watch_falls_back_to_series_default() -> None:
+    series = {"watch_default": {"us_broadcast": "Default Channel"}}
+    session = {"type": "Race"}
+    assert g.resolve_watch(session, series) == {"us_broadcast": "Default Channel"}
+
+
+def test_resolve_watch_returns_none_when_neither_provided() -> None:
+    assert g.resolve_watch({}, {}) is None
+
+
+def test_description_includes_eastern_time_for_non_tba_sessions(f1_series, f1_round) -> None:
+    event = g.build_session_event(f1_round["sessions"][-1], f1_round, f1_series)  # Race
+    description = str(event.get("description"))
+    assert "Time in Eastern:" in description
+    assert "EST" in description or "EDT" in description
+
+
+def test_description_uses_series_watch_default_when_session_lacks_one(
+    f1_series, f1_round,
+) -> None:
+    f1_series["watch_default"] = {
+        "us_broadcast": "TestNet",
+        "us_streaming": "TestStream",
+        "confidence": "high",
+    }
+    event = g.build_session_event(f1_round["sessions"][-1], f1_round, f1_series)
+    description = str(event.get("description"))
+    assert "Where to watch (US): TestNet | streaming: TestStream (high confidence)" in description
+
+
+def test_description_session_watch_overrides_series_default(f1_series, f1_round) -> None:
+    f1_series["watch_default"] = {"us_broadcast": "DefaultNet", "confidence": "low"}
+    f1_round["sessions"][-1]["watch"] = {"us_broadcast": "OverrideNet", "confidence": "high"}
+    event = g.build_session_event(f1_round["sessions"][-1], f1_round, f1_series)
+    description = str(event.get("description"))
+    assert "OverrideNet" in description
+    assert "high confidence" in description
+    assert "DefaultNet" not in description
+
+
+def test_description_falls_back_to_tbd_text_when_no_watch_info(f1_series, f1_round) -> None:
+    """f1_series fixture lacks watch_default, so subscribers see the TBD text."""
+    event = g.build_session_event(f1_round["sessions"][-1], f1_round, f1_series)
+    description = str(event.get("description"))
+    assert "Where to watch (US): not yet sourced" in description
+
+
+def test_tba_event_still_includes_watch_line(f1_series, f1_round) -> None:
+    """Sessions with TBA times still get a watch line (TBD or resolved)."""
+    f1_round["sessions"].append({"type": "FP3", "start": "TBA"})
+    tba_event = g.build_session_event(f1_round["sessions"][-1], f1_round, f1_series)
+    description = str(tba_event.get("description"))
+    assert "Where to watch (US):" in description
+
+
+# Pattern-based privacy guard. Detects *categories* of leaked data without
+# hardcoding any specific person's name/email into a publicly-readable file.
+EMAIL_RE = re.compile(r"[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}")
+NOREPLY_DOMAIN = "users.noreply.github.com"
+LOCAL_PATH_SUBSTRINGS = (
+    "C:\\Users\\",   # Windows user-home prefix (escaped backslashes in source)
+    "/Users/",       # macOS user-home prefix
+    "OneDrive",      # OneDrive sync paths are personal-machine-specific
+    "/home/runner/work/",  # GitHub Actions runner paths -- shouldn't leak either
+)
+
+
+def test_published_files_contain_no_personal_identifiers(tmp_path, monkeypatch) -> None:
+    """
+    Privacy guard: regenerated artifacts must contain no non-noreply emails
+    and no local-machine file paths.
+
+    Pattern-based on purpose -- this test file ships publicly, so it
+    deliberately does not name any specific person's identifiers.
+    """
+    monkeypatch.setattr(g, "OUTPUT_DIR", tmp_path)
+    g.main()
+
+    for path in tmp_path.iterdir():
+        if not path.is_file():
+            continue
+        content = path.read_text(encoding="utf-8", errors="ignore")
+
+        for match in EMAIL_RE.finditer(content):
+            email = match.group(0)
+            assert email.endswith("@" + NOREPLY_DOMAIN), (
+                f"Non-noreply email '{email}' leaked into {path.name}"
+            )
+
+        for substring in LOCAL_PATH_SUBSTRINGS:
+            assert substring not in content, (
+                f"Local-machine path fragment '{substring}' leaked into {path.name}"
+            )
 
 
 def test_full_series_round_trip(tmp_path, f1_series) -> None:

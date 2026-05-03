@@ -6,6 +6,14 @@ calendar_name: F2 2026
 description: FIA Formula 2 Championship 2026 (all sessions in track-local time)
 timezone_default: UTC
 
+# US watch-info default; F2 has no dedicated US linear-TV deal in 2026,
+# so the F1 TV Pro subscription remains the most reliable path.
+watch_default:
+  us_broadcast: F1 TV Pro (no US linear TV)
+  us_streaming: F1 TV Pro
+  confidence: medium
+  notes: F2 is a support series; in the US, F1 TV Pro is the only consistent live source.
+
 rounds:
   - round: 1
     name: Sakhir Round
