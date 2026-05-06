@@ -1,6 +1,7 @@
 # IndyCar Series — 2026 schedule
 #
-# Race dates and Eastern broadcast times from Wikipedia (see tools/gen_indycar_yaml.py).
+# Race dates and Eastern broadcast times from the official IndyCar schedule
+# (cross-checked against Wikipedia; see tools/gen_indycar_yaml.py).
 # Each Race start is stored in the circuit's local zone.
 # Rounds with no published ET yet use start: TBA (all-day placeholder).
 #
@@ -136,6 +137,7 @@ rounds:
     sessions:
       - type: Race
         start: TBA
+        date_hint: 2026-07-19
         duration_minutes: 120
   - round: 13
     name: BitNile.com Grand Prix of Portland
@@ -166,6 +168,7 @@ rounds:
     sessions:
       - type: Race
         start: TBA
+        date_hint: 2026-08-23
         duration_minutes: 120
   - round: 16
     name: Snap-on Makers and Fixers 250

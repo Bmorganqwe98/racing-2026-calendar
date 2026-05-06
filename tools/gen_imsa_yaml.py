@@ -1,10 +1,8 @@
 """
 Generate data/imsa.yaml from the Wikipedia 2026 IMSA WeatherTech schedule.
 
-Session times for sprint rounds use typical afternoon green-flag anchors on the
-listed calendar date (medium confidence — confirm on imsa.com before treating as final).
-
-Endurance rounds include a single Race session spanning the published duration.
+Accuracy-first policy: unverified local clock times are emitted as TBA with a
+`date_hint` anchor (correct race day, no misleading exact-time reminders).
 
 Source: https://en.wikipedia.org/wiki/2026_IMSA_SportsCar_Championship (retrieved 2026-05-03).
 """
@@ -23,10 +21,12 @@ ROUNDS = [
         "Daytona Beach, Florida, USA",
         "America/New_York",
         """      - type: Qualifying
-        start: 2026-01-23T15:30
+        start: TBA
+        date_hint: 2026-01-23
         duration_minutes: 60
       - type: Race
-        start: 2026-01-24T13:40
+        start: TBA
+        date_hint: 2026-01-24
         duration_minutes: 1440""",
     ),
     (
@@ -37,7 +37,8 @@ ROUNDS = [
         "Sebring, Florida, USA",
         "America/New_York",
         """      - type: Race
-        start: 2026-03-21T10:10
+        start: TBA
+        date_hint: 2026-03-21
         duration_minutes: 720""",
     ),
     (
@@ -48,7 +49,8 @@ ROUNDS = [
         "Long Beach, California, USA",
         "America/Los_Angeles",
         """      - type: Race
-        start: 2026-04-18T14:10
+        start: TBA
+        date_hint: 2026-04-18
         duration_minutes: 100""",
     ),
     (
@@ -59,7 +61,8 @@ ROUNDS = [
         "Monterey, California, USA",
         "America/Los_Angeles",
         """      - type: Race
-        start: 2026-05-03T14:10
+        start: TBA
+        date_hint: 2026-05-03
         duration_minutes: 160""",
     ),
     (
@@ -70,7 +73,8 @@ ROUNDS = [
         "Detroit, Michigan, USA",
         "America/New_York",
         """      - type: Race
-        start: 2026-05-30T14:10
+        start: TBA
+        date_hint: 2026-05-30
         duration_minutes: 100""",
     ),
     (
@@ -81,7 +85,8 @@ ROUNDS = [
         "Watkins Glen, New York, USA",
         "America/New_York",
         """      - type: Race
-        start: 2026-06-28T10:10
+        start: TBA
+        date_hint: 2026-06-28
         duration_minutes: 360""",
     ),
     (
@@ -92,7 +97,8 @@ ROUNDS = [
         "Bowmanville, Ontario, Canada",
         "America/Toronto",
         """      - type: Race
-        start: 2026-07-12T14:10
+        start: TBA
+        date_hint: 2026-07-12
         duration_minutes: 160""",
     ),
     (
@@ -103,7 +109,8 @@ ROUNDS = [
         "Elkhart Lake, Wisconsin, USA",
         "America/Chicago",
         """      - type: Race
-        start: 2026-08-02T10:10
+        start: TBA
+        date_hint: 2026-08-02
         duration_minutes: 360""",
     ),
     (
@@ -114,7 +121,8 @@ ROUNDS = [
         "Alton, Virginia, USA",
         "America/New_York",
         """      - type: Race
-        start: 2026-08-23T14:10
+        start: TBA
+        date_hint: 2026-08-23
         duration_minutes: 160""",
     ),
     (
@@ -125,7 +133,8 @@ ROUNDS = [
         "Speedway, Indiana, USA",
         "America/Indiana/Indianapolis",
         """      - type: Race
-        start: 2026-09-20T14:10
+        start: TBA
+        date_hint: 2026-09-20
         duration_minutes: 160""",
     ),
     (
@@ -136,7 +145,8 @@ ROUNDS = [
         "Braselton, Georgia, USA",
         "America/New_York",
         """      - type: Race
-        start: 2026-10-03T11:10
+        start: TBA
+        date_hint: 2026-10-03
         duration_minutes: 600""",
     ),
 ]
@@ -158,8 +168,8 @@ def main() -> None:
         "watch_default:\n"
         "  us_broadcast: NBC / USA Network\n"
         "  us_streaming: Peacock / IMSA.tv (free for practice and qualifying)\n"
-        "  confidence: high\n"
-        "  notes: NBCUniversal holds US IMSA rights; confirm race vs USA Network per weekend.\n"
+        "  confidence: medium\n"
+        "  notes: NBCUniversal holds US IMSA rights; race-by-race exact start times remain TBA until confirmed.\n"
         "\n"
         "rounds:\n"
     ]

@@ -5,8 +5,8 @@ Broadcast times are listed in US Eastern Time (ET); this script converts each
 published start to the circuit's IANA zone as naive local wall-clock times.
 
 Sources:
-  https://en.wikipedia.org/wiki/2026_IndyCar_Series (schedule + ET times;
-  retrieved 2026-05-03).
+  https://www.indycar.com/Schedule (official ET times; retrieved 2026-05-06)
+  https://en.wikipedia.org/wiki/2026_IndyCar_Series (cross-check).
 """
 
 from __future__ import annotations
@@ -83,7 +83,9 @@ def main() -> None:
         lines.append(f"    tz: {tz}\n")
         lines.append("    sessions:\n")
         if tim is None:
-            lines.append("      - type: Race\n        start: TBA\n        duration_minutes: 120\n")
+            lines.append(
+                f"      - type: Race\n        start: TBA\n        date_hint: {d_iso}\n        duration_minutes: 120\n"
+            )
         else:
             naive = et_to_naive_local(d_iso, tim, tz)
             lines.append(f"      - type: Race\n        start: {naive}\n        duration_minutes: 120\n")

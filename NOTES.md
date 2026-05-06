@@ -38,6 +38,7 @@ rounds:
     sessions:
       - type: <FP1 | Qualifying | Race | Day 1 | ...>
         start: <YYYY-MM-DDTHH:MM naive local>  # or "TBA"
+        date_hint: <YYYY-MM-DD, optional; used when start is TBA>
         duration_minutes: <int, optional - see DEFAULT_DURATIONS_MINUTES in generate.py>
         watch:                                  # optional per-session override
           us_broadcast: <...>
@@ -89,9 +90,9 @@ high.
 | Series | `watch_default` confidence | Source | Retrieved | Next verification due |
 |--------|----------------------------|--------|-----------|-----------------------|
 | F1 | high | ESPN / Formula One US broadcast partnership + official where-to-watch pages | 2026-05-03 | mid-season |
-| F2 | high | FIA Formula 2 on F1 TV Pro (support championship) | 2026-05-03 | mid-season |
+| F2 | medium | FIA Formula 2 on F1 TV Pro (support championship) | 2026-05-06 | before first round with official weekend listings |
 | WEC | high | Warner Bros. Discovery / MAX US motorsport stacks | 2026-05-03 | mid-season |
-| IMSA | high | NBCUniversal IMSA rights announcement / Peacock stacks | 2026-05-03 | mid-season |
+| IMSA | medium | NBCUniversal IMSA rights announcement / Peacock stacks | 2026-05-06 | before each IMSA race weekend |
 | IndyCar | high | Fox Corporation IndyCar US rights (2025–2030 extension press pattern) | 2026-05-03 | mid-season |
 | WRC | high | Rally.tv as FIA WRC global streaming provider | 2026-05-03 | mid-season |
 
@@ -152,51 +153,52 @@ override is intentional and confirmed.
 
 ## F2 — FIA Formula 2 Championship 2026
 
-**Status:** Full **14-round** calendar (F2 calendar reshuffle replacing Bahrain/Jeddah with Miami/Montreal — per Wikipedia’s 2026 F2 article at retrieval time).
+**Status:** Full **14-round** calendar with **accuracy-first placeholders** (`start: TBA` + `date_hint`) for all sessions until official weekend session times are posted.
 
 | Source | URL | Retrieved |
 |--------|-----|-----------|
 | Calendar table (sprint / feature dates + circuits) | https://en.wikipedia.org/wiki/2026_Formula_2_Championship | 2026-05-03 |
-| Practice / qualifying template | Same structural pattern as Melbourne 2026 weekend (`tools/gen_f2_yaml.py`) | — |
+| Official season calendar summary | https://www.fiaformula2.com/Calendar | 2026-05-06 |
 
-**Confidence:** **medium** for non-race sessions (practice/qualifying times are template-filled off the sprint date — re-verify on https://www.fiaformula2.com/Calendar before treating as gospel).
+**Confidence:** **medium** for exact clock times (dates are sourced; clock times intentionally held as TBA until officially published per event).
 
 **Editorial decisions:**
 
-- **Baku:** sprint scheduled Friday / feature Saturday per Wikipedia note — practice/qualifying anchored Thursday before the sprint.
+- **Baku:** sprint scheduled Friday / feature Saturday per calendar note; date hints preserve the Thursday/Friday/Saturday sequence while exact times remain TBA.
 
 ---
 
 ## WEC — FIA World Endurance Championship 2026
 
-**Status:** Full **8-round** calendar with **race-only** anchors (no FP/Q/Hyperpole breakdown yet).
+**Status:** Full **8-round** calendar with **race-only** sessions using `start: TBA` + `date_hint` (no FP/Q/Hyperpole breakdown yet).
 
 | Source | URL | Retrieved |
 |--------|-----|-----------|
 | Calendar + round list | https://en.wikipedia.org/wiki/2026_FIA_World_Endurance_Championship | 2026-05-03 |
 | Qatar postponement / Imola season opener | https://www.fiawec.com/en/news/qatar-1812km-postponed-season-to-start-at-imola/11933 | 2026-05-03 |
 
-**Confidence:** **medium** for race green-flag times (approximate anchors on the listed calendar date — replace with bulletin times when available).
+**Confidence:** **medium** for race green-flag times (race dates are sourced; exact local start times are intentionally TBA until bulletin confirmation).
 
 **Editorial decisions:**
 
-- **Le Mans** stored as a single long `Race` session starting Saturday afternoon local time with `duration_minutes: 1440` — subscribers see one block; refine into stint phases later if desired.
+- **Le Mans** remains one long `Race` session with `duration_minutes: 1440`; `date_hint` anchors the all-day placeholder on race weekend without pretending to know a precise start.
 
 ---
 
 ## IMSA — IMSA WeatherTech SportsCar Championship 2026
 
-**Status:** Full **11-round** WeatherTech calendar.
+**Status:** Full **11-round** WeatherTech calendar with accuracy-first placeholders for race start times.
 
 | Source | URL | Retrieved |
 |--------|-----|-----------|
-| Schedule table | https://en.wikipedia.org/wiki/2026_IMSA_SportsCar_Championship | 2026-05-03 |
+| Official WeatherTech schedule | https://www.imsa.com/weathertech/weathertech-2026-schedule/ | 2026-05-06 |
+| Cross-check calendar table | https://en.wikipedia.org/wiki/2026_IMSA_SportsCar_Championship | 2026-05-03 |
 
-**Confidence:** **medium** for sprint rounds (race times are afternoon anchors on the listed date — confirm against `imsa.com` before treating as exact green-flag times). Rolex 24 retains qualifying + race structure similar to the prior stub.
+**Confidence:** **medium** for exact race/qualifying clock times (IMSA schedule provides event windows/durations; YAML now uses TBA + date_hint to avoid false precision).
 
 **Editorial decisions:**
 
-- Endurance lengths taken from the Wikipedia “Length” column (`tools/gen_imsa_yaml.py`).
+- Endurance lengths are kept from published event durations (`24h`, `12h`, `6h`, etc.) while exact green flags remain TBA.
 
 ---
 
@@ -206,9 +208,10 @@ override is intentional and confirmed.
 
 | Source | URL | Retrieved |
 |--------|-----|-----------|
-| Schedule + ET broadcast times | https://en.wikipedia.org/wiki/2026_IndyCar_Series | 2026-05-03 |
+| Official schedule + ET broadcast times | https://www.indycar.com/Schedule | 2026-05-06 |
+| Cross-check ET table | https://en.wikipedia.org/wiki/2026_IndyCar_Series | 2026-05-03 |
 
-**Confidence:** **high** for rounds with a published ET time (converted to track-local wall time in `tools/gen_indycar_yaml.py`). **TBA** rounds: Nashville (July 19) and Washington DC Freedom 250 — Wikipedia listed broadcast time as TBD at retrieval.
+**Confidence:** **high** for rounds with published ET times on the official schedule (converted to track-local wall time in `tools/gen_indycar_yaml.py`). **TBA** rounds: Nashville (July 19) and Washington DC Freedom 250 now include `date_hint` so all-day placeholders anchor on the correct date.
 
 **Editorial decisions:**
 
@@ -218,18 +221,18 @@ override is intentional and confirmed.
 
 ## WRC — FIA World Rally Championship 2026
 
-**Status:** Full **14-round** calendar with **collapsed** multi-day templates.
+**Status:** Full **14-round** calendar with **collapsed** multi-day sessions and accuracy-first `start: TBA` + `date_hint`.
 
 | Source | URL | Retrieved |
 |--------|-----|-----------|
 | Calendar (dates + HQ + surfaces) | https://en.wikipedia.org/wiki/2026_World_Rally_Championship | 2026-05-03 |
 
-**Confidence:** **medium** for intraday times — `tools/gen_wrc_yaml.py` shifts a Monte-style day template onto each rally’s official **start date**; real shakedown / stage windows will differ.
+**Confidence:** **medium** for intraday timing — dates are sourced, but all collapsed sessions intentionally remain TBA pending official stage-by-stage publications.
 
 **Editorial decisions:**
 
 - Per-rally stages remain **collapsed** to `Shakedown / Day 1 / … / Podium` per `.cursor/rules/racing-project-context.mdc`.
-- Estonia / Paraguay / Chile / Sardegna / Saudi Arabia stage distances were still **TBA** on Wikipedia at retrieval — calendar dates are still honored for placeholders.
+- Estonia / Paraguay / Chile / Sardegna / Saudi Arabia stage distances were still **TBA** on Wikipedia at retrieval — calendar dates are still honored via `date_hint`.
 
 ---
 
@@ -244,6 +247,13 @@ subscribers if it ever happens.
 - All six series files were expanded from single-round **scaffolding** to **full published calendars** (see per-series sections above).
 - **Net-new sessions** (every round beyond the former single stub round) generate **new UIDs** on first subscribe — expected.
 - Where round **1** session types and times still match the old stub (e.g. F1 Australian GP), those **UIDs are unchanged** so existing subscribers update in place for that overlap.
+
+### 2026-05-06 — Accuracy-first TBA placeholder pass
+
+- Added `date_hint` schema support and generator behavior for TBA sessions, so all-day placeholders anchor on the correct race/rally date instead of the Jan 1 fallback.
+- Converted uncertain exact times to `start: TBA` + `date_hint` in F2, IMSA, WEC, and WRC data.
+- IndyCar retained official published ET-derived starts where available; existing TBA rounds now include `date_hint`.
+- UID stability preserved by keeping existing `type` strings unchanged.
 
 ---
 

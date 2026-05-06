@@ -2,8 +2,8 @@
 Generate data/wrc.yaml — collapsed per-day WRC schedule (project convention).
 
 Dates and rally HQ geography from Wikipedia;
-clock times reuse the Monte Carlo 2026 editorial template (morning shakedown / evening
-opening leg / full days / podium) shifted onto each rally's published start date.
+clock times are intentionally TBA (accuracy-first). Each collapsed session gets
+a date_hint so all-day placeholders land on the correct rally day.
 
 Not stage-accurate — see NOTES.md and racing-project-context.mdc.
 
@@ -41,12 +41,12 @@ def sessions_for_start(d0: date) -> str:
     d3 = d0 + timedelta(days=3)
     return "\n".join(
         [
-            f"      - type: Shakedown\n        start: {d0.isoformat()}T09:00\n        duration_minutes: 60",
-            f"      - type: Day 1\n        start: {d0.isoformat()}T19:00\n        duration_minutes: 240",
-            f"      - type: Day 2\n        start: {d1.isoformat()}T08:00\n        duration_minutes: 600",
-            f"      - type: Day 3\n        start: {d2.isoformat()}T08:00\n        duration_minutes: 600",
-            f"      - type: Day 4\n        start: {d3.isoformat()}T08:00\n        duration_minutes: 240",
-            f"      - type: Podium\n        start: {d3.isoformat()}T15:00\n        duration_minutes: 60",
+            f"      - type: Shakedown\n        start: TBA\n        date_hint: {d0.isoformat()}\n        duration_minutes: 60",
+            f"      - type: Day 1\n        start: TBA\n        date_hint: {d0.isoformat()}\n        duration_minutes: 240",
+            f"      - type: Day 2\n        start: TBA\n        date_hint: {d1.isoformat()}\n        duration_minutes: 600",
+            f"      - type: Day 3\n        start: TBA\n        date_hint: {d2.isoformat()}\n        duration_minutes: 600",
+            f"      - type: Day 4\n        start: TBA\n        date_hint: {d3.isoformat()}\n        duration_minutes: 240",
+            f"      - type: Podium\n        start: TBA\n        date_hint: {d3.isoformat()}\n        duration_minutes: 60",
         ]
     )
 

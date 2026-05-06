@@ -21,22 +21,28 @@ rounds:
     tz: Europe/Paris
     sessions:
       - type: Shakedown
-        start: 2026-01-22T09:00
+        start: TBA
+        date_hint: 2026-01-22
         duration_minutes: 60
       - type: Day 1
-        start: 2026-01-22T19:00
+        start: TBA
+        date_hint: 2026-01-22
         duration_minutes: 240
       - type: Day 2
-        start: 2026-01-23T08:00
+        start: TBA
+        date_hint: 2026-01-23
         duration_minutes: 600
       - type: Day 3
-        start: 2026-01-24T08:00
+        start: TBA
+        date_hint: 2026-01-24
         duration_minutes: 600
       - type: Day 4
-        start: 2026-01-25T08:00
+        start: TBA
+        date_hint: 2026-01-25
         duration_minutes: 240
       - type: Podium
-        start: 2026-01-25T15:00
+        start: TBA
+        date_hint: 2026-01-25
         duration_minutes: 60
 
   - round: 2
@@ -47,22 +53,28 @@ rounds:
     tz: Europe/Stockholm
     sessions:
       - type: Shakedown
-        start: 2026-02-12T09:00
+        start: TBA
+        date_hint: 2026-02-12
         duration_minutes: 60
       - type: Day 1
-        start: 2026-02-12T19:00
+        start: TBA
+        date_hint: 2026-02-12
         duration_minutes: 240
       - type: Day 2
-        start: 2026-02-13T08:00
+        start: TBA
+        date_hint: 2026-02-13
         duration_minutes: 600
       - type: Day 3
-        start: 2026-02-14T08:00
+        start: TBA
+        date_hint: 2026-02-14
         duration_minutes: 600
       - type: Day 4
-        start: 2026-02-15T08:00
+        start: TBA
+        date_hint: 2026-02-15
         duration_minutes: 240
       - type: Podium
-        start: 2026-02-15T15:00
+        start: TBA
+        date_hint: 2026-02-15
         duration_minutes: 60
 
   - round: 3
@@ -73,22 +85,28 @@ rounds:
     tz: Africa/Nairobi
     sessions:
       - type: Shakedown
-        start: 2026-03-12T09:00
+        start: TBA
+        date_hint: 2026-03-12
         duration_minutes: 60
       - type: Day 1
-        start: 2026-03-12T19:00
+        start: TBA
+        date_hint: 2026-03-12
         duration_minutes: 240
       - type: Day 2
-        start: 2026-03-13T08:00
+        start: TBA
+        date_hint: 2026-03-13
         duration_minutes: 600
       - type: Day 3
-        start: 2026-03-14T08:00
+        start: TBA
+        date_hint: 2026-03-14
         duration_minutes: 600
       - type: Day 4
-        start: 2026-03-15T08:00
+        start: TBA
+        date_hint: 2026-03-15
         duration_minutes: 240
       - type: Podium
-        start: 2026-03-15T15:00
+        start: TBA
+        date_hint: 2026-03-15
         duration_minutes: 60
 
   - round: 4
@@ -99,22 +117,28 @@ rounds:
     tz: Europe/Zagreb
     sessions:
       - type: Shakedown
-        start: 2026-04-09T09:00
+        start: TBA
+        date_hint: 2026-04-09
         duration_minutes: 60
       - type: Day 1
-        start: 2026-04-09T19:00
+        start: TBA
+        date_hint: 2026-04-09
         duration_minutes: 240
       - type: Day 2
-        start: 2026-04-10T08:00
+        start: TBA
+        date_hint: 2026-04-10
         duration_minutes: 600
       - type: Day 3
-        start: 2026-04-11T08:00
+        start: TBA
+        date_hint: 2026-04-11
         duration_minutes: 600
       - type: Day 4
-        start: 2026-04-12T08:00
+        start: TBA
+        date_hint: 2026-04-12
         duration_minutes: 240
       - type: Podium
-        start: 2026-04-12T15:00
+        start: TBA
+        date_hint: 2026-04-12
         duration_minutes: 60
 
   - round: 5
@@ -125,22 +149,28 @@ rounds:
     tz: Atlantic/Canary
     sessions:
       - type: Shakedown
-        start: 2026-04-23T09:00
+        start: TBA
+        date_hint: 2026-04-23
         duration_minutes: 60
       - type: Day 1
-        start: 2026-04-23T19:00
+        start: TBA
+        date_hint: 2026-04-23
         duration_minutes: 240
       - type: Day 2
-        start: 2026-04-24T08:00
+        start: TBA
+        date_hint: 2026-04-24
         duration_minutes: 600
       - type: Day 3
-        start: 2026-04-25T08:00
+        start: TBA
+        date_hint: 2026-04-25
         duration_minutes: 600
       - type: Day 4
-        start: 2026-04-26T08:00
+        start: TBA
+        date_hint: 2026-04-26
         duration_minutes: 240
       - type: Podium
-        start: 2026-04-26T15:00
+        start: TBA
+        date_hint: 2026-04-26
         duration_minutes: 60
 
   - round: 6
@@ -151,22 +181,28 @@ rounds:
     tz: Europe/Lisbon
     sessions:
       - type: Shakedown
-        start: 2026-05-07T09:00
+        start: TBA
+        date_hint: 2026-05-07
         duration_minutes: 60
       - type: Day 1
-        start: 2026-05-07T19:00
+        start: TBA
+        date_hint: 2026-05-07
         duration_minutes: 240
       - type: Day 2
-        start: 2026-05-08T08:00
+        start: TBA
+        date_hint: 2026-05-08
         duration_minutes: 600
       - type: Day 3
-        start: 2026-05-09T08:00
+        start: TBA
+        date_hint: 2026-05-09
         duration_minutes: 600
       - type: Day 4
-        start: 2026-05-10T08:00
+        start: TBA
+        date_hint: 2026-05-10
         duration_minutes: 240
       - type: Podium
-        start: 2026-05-10T15:00
+        start: TBA
+        date_hint: 2026-05-10
         duration_minutes: 60
 
   - round: 7
@@ -177,22 +213,28 @@ rounds:
     tz: Asia/Tokyo
     sessions:
       - type: Shakedown
-        start: 2026-05-28T09:00
+        start: TBA
+        date_hint: 2026-05-28
         duration_minutes: 60
       - type: Day 1
-        start: 2026-05-28T19:00
+        start: TBA
+        date_hint: 2026-05-28
         duration_minutes: 240
       - type: Day 2
-        start: 2026-05-29T08:00
+        start: TBA
+        date_hint: 2026-05-29
         duration_minutes: 600
       - type: Day 3
-        start: 2026-05-30T08:00
+        start: TBA
+        date_hint: 2026-05-30
         duration_minutes: 600
       - type: Day 4
-        start: 2026-05-31T08:00
+        start: TBA
+        date_hint: 2026-05-31
         duration_minutes: 240
       - type: Podium
-        start: 2026-05-31T15:00
+        start: TBA
+        date_hint: 2026-05-31
         duration_minutes: 60
 
   - round: 8
@@ -203,22 +245,28 @@ rounds:
     tz: Europe/Athens
     sessions:
       - type: Shakedown
-        start: 2026-06-25T09:00
+        start: TBA
+        date_hint: 2026-06-25
         duration_minutes: 60
       - type: Day 1
-        start: 2026-06-25T19:00
+        start: TBA
+        date_hint: 2026-06-25
         duration_minutes: 240
       - type: Day 2
-        start: 2026-06-26T08:00
+        start: TBA
+        date_hint: 2026-06-26
         duration_minutes: 600
       - type: Day 3
-        start: 2026-06-27T08:00
+        start: TBA
+        date_hint: 2026-06-27
         duration_minutes: 600
       - type: Day 4
-        start: 2026-06-28T08:00
+        start: TBA
+        date_hint: 2026-06-28
         duration_minutes: 240
       - type: Podium
-        start: 2026-06-28T15:00
+        start: TBA
+        date_hint: 2026-06-28
         duration_minutes: 60
 
   - round: 9
@@ -229,22 +277,28 @@ rounds:
     tz: Europe/Tallinn
     sessions:
       - type: Shakedown
-        start: 2026-07-16T09:00
+        start: TBA
+        date_hint: 2026-07-16
         duration_minutes: 60
       - type: Day 1
-        start: 2026-07-16T19:00
+        start: TBA
+        date_hint: 2026-07-16
         duration_minutes: 240
       - type: Day 2
-        start: 2026-07-17T08:00
+        start: TBA
+        date_hint: 2026-07-17
         duration_minutes: 600
       - type: Day 3
-        start: 2026-07-18T08:00
+        start: TBA
+        date_hint: 2026-07-18
         duration_minutes: 600
       - type: Day 4
-        start: 2026-07-19T08:00
+        start: TBA
+        date_hint: 2026-07-19
         duration_minutes: 240
       - type: Podium
-        start: 2026-07-19T15:00
+        start: TBA
+        date_hint: 2026-07-19
         duration_minutes: 60
 
   - round: 10
@@ -255,22 +309,28 @@ rounds:
     tz: Europe/Helsinki
     sessions:
       - type: Shakedown
-        start: 2026-07-30T09:00
+        start: TBA
+        date_hint: 2026-07-30
         duration_minutes: 60
       - type: Day 1
-        start: 2026-07-30T19:00
+        start: TBA
+        date_hint: 2026-07-30
         duration_minutes: 240
       - type: Day 2
-        start: 2026-07-31T08:00
+        start: TBA
+        date_hint: 2026-07-31
         duration_minutes: 600
       - type: Day 3
-        start: 2026-08-01T08:00
+        start: TBA
+        date_hint: 2026-08-01
         duration_minutes: 600
       - type: Day 4
-        start: 2026-08-02T08:00
+        start: TBA
+        date_hint: 2026-08-02
         duration_minutes: 240
       - type: Podium
-        start: 2026-08-02T15:00
+        start: TBA
+        date_hint: 2026-08-02
         duration_minutes: 60
 
   - round: 11
@@ -281,22 +341,28 @@ rounds:
     tz: America/Asuncion
     sessions:
       - type: Shakedown
-        start: 2026-08-27T09:00
+        start: TBA
+        date_hint: 2026-08-27
         duration_minutes: 60
       - type: Day 1
-        start: 2026-08-27T19:00
+        start: TBA
+        date_hint: 2026-08-27
         duration_minutes: 240
       - type: Day 2
-        start: 2026-08-28T08:00
+        start: TBA
+        date_hint: 2026-08-28
         duration_minutes: 600
       - type: Day 3
-        start: 2026-08-29T08:00
+        start: TBA
+        date_hint: 2026-08-29
         duration_minutes: 600
       - type: Day 4
-        start: 2026-08-30T08:00
+        start: TBA
+        date_hint: 2026-08-30
         duration_minutes: 240
       - type: Podium
-        start: 2026-08-30T15:00
+        start: TBA
+        date_hint: 2026-08-30
         duration_minutes: 60
 
   - round: 12
@@ -307,22 +373,28 @@ rounds:
     tz: America/Santiago
     sessions:
       - type: Shakedown
-        start: 2026-09-10T09:00
+        start: TBA
+        date_hint: 2026-09-10
         duration_minutes: 60
       - type: Day 1
-        start: 2026-09-10T19:00
+        start: TBA
+        date_hint: 2026-09-10
         duration_minutes: 240
       - type: Day 2
-        start: 2026-09-11T08:00
+        start: TBA
+        date_hint: 2026-09-11
         duration_minutes: 600
       - type: Day 3
-        start: 2026-09-12T08:00
+        start: TBA
+        date_hint: 2026-09-12
         duration_minutes: 600
       - type: Day 4
-        start: 2026-09-13T08:00
+        start: TBA
+        date_hint: 2026-09-13
         duration_minutes: 240
       - type: Podium
-        start: 2026-09-13T15:00
+        start: TBA
+        date_hint: 2026-09-13
         duration_minutes: 60
 
   - round: 13
@@ -333,22 +405,28 @@ rounds:
     tz: Europe/Rome
     sessions:
       - type: Shakedown
-        start: 2026-10-01T09:00
+        start: TBA
+        date_hint: 2026-10-01
         duration_minutes: 60
       - type: Day 1
-        start: 2026-10-01T19:00
+        start: TBA
+        date_hint: 2026-10-01
         duration_minutes: 240
       - type: Day 2
-        start: 2026-10-02T08:00
+        start: TBA
+        date_hint: 2026-10-02
         duration_minutes: 600
       - type: Day 3
-        start: 2026-10-03T08:00
+        start: TBA
+        date_hint: 2026-10-03
         duration_minutes: 600
       - type: Day 4
-        start: 2026-10-04T08:00
+        start: TBA
+        date_hint: 2026-10-04
         duration_minutes: 240
       - type: Podium
-        start: 2026-10-04T15:00
+        start: TBA
+        date_hint: 2026-10-04
         duration_minutes: 60
 
   - round: 14
@@ -359,21 +437,27 @@ rounds:
     tz: Asia/Riyadh
     sessions:
       - type: Shakedown
-        start: 2026-11-11T09:00
+        start: TBA
+        date_hint: 2026-11-11
         duration_minutes: 60
       - type: Day 1
-        start: 2026-11-11T19:00
+        start: TBA
+        date_hint: 2026-11-11
         duration_minutes: 240
       - type: Day 2
-        start: 2026-11-12T08:00
+        start: TBA
+        date_hint: 2026-11-12
         duration_minutes: 600
       - type: Day 3
-        start: 2026-11-13T08:00
+        start: TBA
+        date_hint: 2026-11-13
         duration_minutes: 600
       - type: Day 4
-        start: 2026-11-14T08:00
+        start: TBA
+        date_hint: 2026-11-14
         duration_minutes: 240
       - type: Podium
-        start: 2026-11-14T15:00
+        start: TBA
+        date_hint: 2026-11-14
         duration_minutes: 60
 

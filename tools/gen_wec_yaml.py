@@ -1,9 +1,9 @@
 """
 Generate data/wec.yaml — 2026 FIA WEC calendar (race anchors).
 
-Round dates from Wikipedia; green-flag times are provisional midday / typical WEC
-anchors on that calendar date (medium confidence — expand to full FP/Q/Hyperpole/Race
-once official bulletins are wired in).
+Round dates from Wikipedia and FIA WEC news.
+Accuracy-first policy: exact local race start times are set to TBA with date_hint
+until official weekend bulletins are captured.
 
 Source: https://en.wikipedia.org/wiki/2026_FIA_World_Endurance_Championship (retrieved 2026-05-03).
 Official calendar moves (e.g. Qatar postponement) cross-checked to FIA WEC news:
@@ -22,7 +22,7 @@ ROUNDS = [
         "Imola Circuit",
         "Imola, Italy",
         "Europe/Rome",
-        "2026-04-19T12:45",
+        "2026-04-19",
         360,
     ),
     (
@@ -32,7 +32,7 @@ ROUNDS = [
         "Circuit de Spa-Francorchamps",
         "Stavelot, Belgium",
         "Europe/Brussels",
-        "2026-05-09T12:45",
+        "2026-05-09",
         360,
     ),
     (
@@ -42,7 +42,7 @@ ROUNDS = [
         "Circuit de la Sarthe",
         "Le Mans, France",
         "Europe/Paris",
-        "2026-06-13T16:00",
+        "2026-06-13",
         1440,
     ),
     (
@@ -52,7 +52,7 @@ ROUNDS = [
         "Interlagos Circuit",
         "São Paulo, Brazil",
         "America/Sao_Paulo",
-        "2026-07-12T11:30",
+        "2026-07-12",
         360,
     ),
     (
@@ -62,7 +62,7 @@ ROUNDS = [
         "Circuit of The Americas",
         "Austin, Texas, USA",
         "America/Chicago",
-        "2026-09-06T13:00",
+        "2026-09-06",
         360,
     ),
     (
@@ -72,7 +72,7 @@ ROUNDS = [
         "Fuji Speedway",
         "Oyama, Shizuoka, Japan",
         "Asia/Tokyo",
-        "2026-09-27T11:00",
+        "2026-09-27",
         360,
     ),
     (
@@ -82,7 +82,7 @@ ROUNDS = [
         "Lusail International Circuit",
         "Lusail, Qatar",
         "Asia/Qatar",
-        "2026-10-24T14:00",
+        "2026-10-24",
         720,
     ),
     (
@@ -92,7 +92,7 @@ ROUNDS = [
         "Bahrain International Circuit",
         "Sakhir, Bahrain",
         "Asia/Bahrain",
-        "2026-11-07T14:00",
+        "2026-11-07",
         480,
     ),
 ]
@@ -119,7 +119,7 @@ def main() -> None:
         "\n"
         "rounds:\n",
     ]
-    for rnd, name, short, circuit, loc, tz, start, dur in ROUNDS:
+    for rnd, name, short, circuit, loc, tz, date_hint, dur in ROUNDS:
         lines.append(f"  - round: {rnd}\n")
         lines.append(f"    name: {name}\n")
         lines.append(f"    short_name: {short}\n")
@@ -128,7 +128,7 @@ def main() -> None:
         lines.append(f"    tz: {tz}\n")
         lines.append("    sessions:\n")
         lines.append(
-            f"      - type: Race\n        start: {start}\n        duration_minutes: {dur}\n\n"
+            f"      - type: Race\n        start: TBA\n        date_hint: {date_hint}\n        duration_minutes: {dur}\n\n"
         )
     out.write_text("".join(lines), encoding="utf-8")
     print(f"Wrote {out}")

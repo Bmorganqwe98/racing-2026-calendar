@@ -10,8 +10,8 @@ timezone_default: America/New_York
 watch_default:
   us_broadcast: NBC / USA Network
   us_streaming: Peacock / IMSA.tv (free for practice and qualifying)
-  confidence: high
-  notes: NBCUniversal holds US IMSA rights; confirm race vs USA Network per weekend.
+  confidence: medium
+  notes: NBCUniversal holds US IMSA rights; race-by-race exact start times remain TBA until confirmed.
 
 rounds:
   - round: 1
@@ -22,10 +22,12 @@ rounds:
     tz: America/New_York
     sessions:
       - type: Qualifying
-        start: 2026-01-23T15:30
+        start: TBA
+        date_hint: 2026-01-23
         duration_minutes: 60
       - type: Race
-        start: 2026-01-24T13:40
+        start: TBA
+        date_hint: 2026-01-24
         duration_minutes: 1440
 
   - round: 2
@@ -36,7 +38,8 @@ rounds:
     tz: America/New_York
     sessions:
       - type: Race
-        start: 2026-03-21T10:10
+        start: TBA
+        date_hint: 2026-03-21
         duration_minutes: 720
 
   - round: 3
@@ -47,7 +50,8 @@ rounds:
     tz: America/Los_Angeles
     sessions:
       - type: Race
-        start: 2026-04-18T14:10
+        start: TBA
+        date_hint: 2026-04-18
         duration_minutes: 100
 
   - round: 4
@@ -58,7 +62,8 @@ rounds:
     tz: America/Los_Angeles
     sessions:
       - type: Race
-        start: 2026-05-03T14:10
+        start: TBA
+        date_hint: 2026-05-03
         duration_minutes: 160
 
   - round: 5
@@ -69,7 +74,8 @@ rounds:
     tz: America/New_York
     sessions:
       - type: Race
-        start: 2026-05-30T14:10
+        start: TBA
+        date_hint: 2026-05-30
         duration_minutes: 100
 
   - round: 6
@@ -80,7 +86,8 @@ rounds:
     tz: America/New_York
     sessions:
       - type: Race
-        start: 2026-06-28T10:10
+        start: TBA
+        date_hint: 2026-06-28
         duration_minutes: 360
 
   - round: 7
@@ -91,7 +98,8 @@ rounds:
     tz: America/Toronto
     sessions:
       - type: Race
-        start: 2026-07-12T14:10
+        start: TBA
+        date_hint: 2026-07-12
         duration_minutes: 160
 
   - round: 8
@@ -102,7 +110,8 @@ rounds:
     tz: America/Chicago
     sessions:
       - type: Race
-        start: 2026-08-02T10:10
+        start: TBA
+        date_hint: 2026-08-02
         duration_minutes: 360
 
   - round: 9
@@ -113,7 +122,8 @@ rounds:
     tz: America/New_York
     sessions:
       - type: Race
-        start: 2026-08-23T14:10
+        start: TBA
+        date_hint: 2026-08-23
         duration_minutes: 160
 
   - round: 10
@@ -124,7 +134,8 @@ rounds:
     tz: America/Indiana/Indianapolis
     sessions:
       - type: Race
-        start: 2026-09-20T14:10
+        start: TBA
+        date_hint: 2026-09-20
         duration_minutes: 160
 
   - round: 11
@@ -135,6 +146,7 @@ rounds:
     tz: America/New_York
     sessions:
       - type: Race
-        start: 2026-10-03T11:10
+        start: TBA
+        date_hint: 2026-10-03
         duration_minutes: 600
 

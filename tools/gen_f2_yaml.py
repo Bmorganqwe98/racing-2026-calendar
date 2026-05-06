@@ -172,22 +172,17 @@ ROUNDS = [
 
 
 def sessions_block(sprint_d: date, feature_d: date, baku: bool) -> str:
-    if baku:
-        pq = sprint_d - timedelta(days=1)  # Thu before Fri sprint
-        lines = [
-            f"      - type: Practice\n        start: {pq.isoformat()}T10:00\n        duration_minutes: 45",
-            f"      - type: Qualifying\n        start: {pq.isoformat()}T14:30\n        duration_minutes: 30",
-            f"      - type: Sprint Race\n        start: {sprint_d.isoformat()}T15:35\n        duration_minutes: 60",
-            f"      - type: Feature Race\n        start: {feature_d.isoformat()}T11:35\n        duration_minutes: 80",
-        ]
-    else:
-        pq = sprint_d - timedelta(days=1)
-        lines = [
-            f"      - type: Practice\n        start: {pq.isoformat()}T10:00\n        duration_minutes: 45",
-            f"      - type: Qualifying\n        start: {pq.isoformat()}T14:30\n        duration_minutes: 30",
-            f"      - type: Sprint Race\n        start: {sprint_d.isoformat()}T15:35\n        duration_minutes: 60",
-            f"      - type: Feature Race\n        start: {feature_d.isoformat()}T11:35\n        duration_minutes: 80",
-        ]
+    """
+    Accuracy-first policy: when exact local clock times are unverified, emit TBA
+    all-day placeholders anchored by `date_hint`.
+    """
+    pq = sprint_d - timedelta(days=1)  # Thu for Baku, Fri for standard weekends
+    lines = [
+        f"      - type: Practice\n        start: TBA\n        date_hint: {pq.isoformat()}\n        duration_minutes: 45",
+        f"      - type: Qualifying\n        start: TBA\n        date_hint: {pq.isoformat()}\n        duration_minutes: 30",
+        f"      - type: Sprint Race\n        start: TBA\n        date_hint: {sprint_d.isoformat()}\n        duration_minutes: 60",
+        f"      - type: Feature Race\n        start: TBA\n        date_hint: {feature_d.isoformat()}\n        duration_minutes: 80",
+    ]
     return "\n".join(lines)
 
 
@@ -196,10 +191,9 @@ def main() -> None:
     out = root / "data" / "f2.yaml"
     header = """# Formula 2 — 2026 schedule
 #
-# Sprint / feature race dates from Wikipedia's F2 calendar table; practice and
-# qualifying use the template described in tools/gen_f2_yaml.py (same structure
-# as the Melbourne opener). Re-verify against https://www.fiaformula2.com/Calendar
-# before relying on non-race session times.
+# Sprint / feature race dates from Wikipedia's F2 calendar table.
+# Accuracy-first policy: exact session clock times are set to TBA until verified
+# on official F2 weekend schedules; each session keeps a date_hint anchor.
 #
 series: Formula 2
 slug: f2
@@ -210,9 +204,10 @@ timezone_default: UTC
 watch_default:
   us_broadcast: F1 TV Pro (no US linear TV)
   us_streaming: F1 TV Pro
-  confidence: high
+  confidence: medium
   notes: >-
-    F2 sessions air on F1 TV Pro in the US (support series to Formula 1).
+    F2 sessions air on F1 TV Pro in the US (support series to Formula 1);
+    verify weekend-level listings before promoting to high confidence.
 
 rounds:
 """

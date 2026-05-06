@@ -211,10 +211,23 @@ def series_short_label(series_data: Dict[str, Any]) -> str:
 
 
 def round_earliest_date(round_data: Dict[str, Any]) -> Optional[date]:
-    """Return the earliest known session date in this round (for TBA fallback)."""
+    """
+    Return the earliest known session date in this round (for TBA fallback).
+
+    If a session is TBA but includes `date_hint`, that hint is considered so
+    all-day placeholders land on the right weekend instead of Jan 1.
+    """
     earliest: Optional[datetime] = None
     for session in round_data.get("sessions", []) or []:
         if is_tba(session.get("start")):
+            hint = session.get("date_hint")
+            if hint:
+                try:
+                    dt = parse_local_start(hint)
+                except (ValueError, TypeError):
+                    continue
+                if earliest is None or dt < earliest:
+                    earliest = dt
             continue
         try:
             dt = parse_local_start(session.get("start"))
@@ -320,7 +333,15 @@ def build_session_event(
 
     if is_tba(session.get("start")):
         # All-day placeholder; description flags it so subscribers know it's TBA.
-        anchor = round_earliest_date(round_data) or TBA_FALLBACK_DATE
+        anchor: Optional[date] = None
+        hint = session.get("date_hint")
+        if hint:
+            try:
+                anchor = parse_local_start(hint).date()
+            except (ValueError, TypeError):
+                anchor = None
+        if anchor is None:
+            anchor = round_earliest_date(round_data) or TBA_FALLBACK_DATE
         event.add("dtstart", anchor)
         event.add("dtend", anchor + timedelta(days=1))
         event.add(

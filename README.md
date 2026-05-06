@@ -112,11 +112,10 @@ on every deploy, so you never need to commit those files.
 ### Run tests
 
 ```bash
-pip install pytest
-pytest -q
+python -m pytest -q
 ```
 
-### Edit a schedule
+### Edit a schedule (terminal path)
 
 1. Open `data/<series>.yaml`.
 2. Adjust the offending session's `start` (naive local time, ISO 8601) or
@@ -124,6 +123,14 @@ pytest -q
 3. Run `python generate.py` to preview.
 4. Update `NOTES.md` with the source URL and retrieval date for the change.
 5. Commit and push. GitHub Actions deploys automatically.
+
+### Edit a schedule (browser-only path)
+
+1. Go to the repo on GitHub and open `data/<series>.yaml`.
+2. Click the pencil icon (Edit this file).
+3. Make the change, then commit directly to `main`.
+4. Open the Actions tab and wait for **Deploy ICS to Pages** to finish green.
+5. Open your `.ics` URL once in the browser to confirm the update is live.
 
 See [`.cursor/rules/racing-project-context.mdc`](.cursor/rules/racing-project-context.mdc)
 for the full schema and conventions, and [`NOTES.md`](NOTES.md) for the
@@ -139,7 +146,7 @@ edit data/<series>.yaml -> git push origin main
                                 v
                .github/workflows/deploy.yml runs:
                1. pip install -r requirements.txt
-               2. pytest -q
+               2. python -m pytest -q
                3. python generate.py
                4. upload output/ to GitHub Pages
                                 |
@@ -153,6 +160,26 @@ edit data/<series>.yaml -> git push origin main
 One-time setup on the GitHub side: **Settings → Pages → Source = GitHub
 Actions**. After the first push to `main` the workflow runs, the URL goes
 live, and you're done.
+
+### Publish checklist (every update)
+
+Use this quick checklist each time you change schedule data:
+
+1. Edit `data/<series>.yaml`.
+2. If sources/confidence changed, update `NOTES.md` in the same pass.
+3. (Optional local check) run:
+
+```bash
+python -m pytest -q
+python generate.py
+```
+
+4. Push to `main` (or commit via GitHub web editor).
+5. Open **Actions** and confirm the latest **Deploy ICS to Pages** run is green.
+6. Verify one feed URL in browser (should show `BEGIN:VCALENDAR`):
+   `https://Bmorganqwe98.github.io/racing-2026-calendar/<series>.ics`
+7. In Google Calendar, trigger **Refresh** on the subscribed calendar if you want
+   faster pickup than the normal 8-24h poll.
 
 ---
 

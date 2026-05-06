@@ -1,9 +1,8 @@
 # Formula 2 — 2026 schedule
 #
-# Sprint / feature race dates from Wikipedia's F2 calendar table; practice and
-# qualifying use the template described in tools/gen_f2_yaml.py (same structure
-# as the Melbourne opener). Re-verify against https://www.fiaformula2.com/Calendar
-# before relying on non-race session times.
+# Sprint / feature race dates from Wikipedia's F2 calendar table.
+# Accuracy-first policy: exact session clock times are set to TBA until verified
+# on official F2 weekend schedules; each session keeps a date_hint anchor.
 #
 series: Formula 2
 slug: f2
@@ -14,9 +13,10 @@ timezone_default: UTC
 watch_default:
   us_broadcast: F1 TV Pro (no US linear TV)
   us_streaming: F1 TV Pro
-  confidence: high
+  confidence: medium
   notes: >-
-    F2 sessions air on F1 TV Pro in the US (support series to Formula 1).
+    F2 sessions air on F1 TV Pro in the US (support series to Formula 1);
+    verify weekend-level listings before promoting to high confidence.
 
 rounds:
   - round: 1
@@ -27,16 +27,20 @@ rounds:
     tz: Australia/Melbourne
     sessions:
       - type: Practice
-        start: 2026-03-06T10:00
+        start: TBA
+        date_hint: 2026-03-06
         duration_minutes: 45
       - type: Qualifying
-        start: 2026-03-06T14:30
+        start: TBA
+        date_hint: 2026-03-06
         duration_minutes: 30
       - type: Sprint Race
-        start: 2026-03-07T15:35
+        start: TBA
+        date_hint: 2026-03-07
         duration_minutes: 60
       - type: Feature Race
-        start: 2026-03-08T11:35
+        start: TBA
+        date_hint: 2026-03-08
         duration_minutes: 80
 
   - round: 2
@@ -47,16 +51,20 @@ rounds:
     tz: America/New_York
     sessions:
       - type: Practice
-        start: 2026-05-01T10:00
+        start: TBA
+        date_hint: 2026-05-01
         duration_minutes: 45
       - type: Qualifying
-        start: 2026-05-01T14:30
+        start: TBA
+        date_hint: 2026-05-01
         duration_minutes: 30
       - type: Sprint Race
-        start: 2026-05-02T15:35
+        start: TBA
+        date_hint: 2026-05-02
         duration_minutes: 60
       - type: Feature Race
-        start: 2026-05-03T11:35
+        start: TBA
+        date_hint: 2026-05-03
         duration_minutes: 80
 
   - round: 3
@@ -67,16 +75,20 @@ rounds:
     tz: America/Toronto
     sessions:
       - type: Practice
-        start: 2026-05-22T10:00
+        start: TBA
+        date_hint: 2026-05-22
         duration_minutes: 45
       - type: Qualifying
-        start: 2026-05-22T14:30
+        start: TBA
+        date_hint: 2026-05-22
         duration_minutes: 30
       - type: Sprint Race
-        start: 2026-05-23T15:35
+        start: TBA
+        date_hint: 2026-05-23
         duration_minutes: 60
       - type: Feature Race
-        start: 2026-05-24T11:35
+        start: TBA
+        date_hint: 2026-05-24
         duration_minutes: 80
 
   - round: 4
@@ -87,16 +99,20 @@ rounds:
     tz: Europe/Monaco
     sessions:
       - type: Practice
-        start: 2026-06-05T10:00
+        start: TBA
+        date_hint: 2026-06-05
         duration_minutes: 45
       - type: Qualifying
-        start: 2026-06-05T14:30
+        start: TBA
+        date_hint: 2026-06-05
         duration_minutes: 30
       - type: Sprint Race
-        start: 2026-06-06T15:35
+        start: TBA
+        date_hint: 2026-06-06
         duration_minutes: 60
       - type: Feature Race
-        start: 2026-06-07T11:35
+        start: TBA
+        date_hint: 2026-06-07
         duration_minutes: 80
 
   - round: 5
@@ -107,16 +123,20 @@ rounds:
     tz: Europe/Madrid
     sessions:
       - type: Practice
-        start: 2026-06-12T10:00
+        start: TBA
+        date_hint: 2026-06-12
         duration_minutes: 45
       - type: Qualifying
-        start: 2026-06-12T14:30
+        start: TBA
+        date_hint: 2026-06-12
         duration_minutes: 30
       - type: Sprint Race
-        start: 2026-06-13T15:35
+        start: TBA
+        date_hint: 2026-06-13
         duration_minutes: 60
       - type: Feature Race
-        start: 2026-06-14T11:35
+        start: TBA
+        date_hint: 2026-06-14
         duration_minutes: 80
 
   - round: 6
@@ -127,16 +147,20 @@ rounds:
     tz: Europe/Vienna
     sessions:
       - type: Practice
-        start: 2026-06-26T10:00
+        start: TBA
+        date_hint: 2026-06-26
         duration_minutes: 45
       - type: Qualifying
-        start: 2026-06-26T14:30
+        start: TBA
+        date_hint: 2026-06-26
         duration_minutes: 30
       - type: Sprint Race
-        start: 2026-06-27T15:35
+        start: TBA
+        date_hint: 2026-06-27
         duration_minutes: 60
       - type: Feature Race
-        start: 2026-06-28T11:35
+        start: TBA
+        date_hint: 2026-06-28
         duration_minutes: 80
 
   - round: 7
@@ -147,16 +171,20 @@ rounds:
     tz: Europe/London
     sessions:
       - type: Practice
-        start: 2026-07-03T10:00
+        start: TBA
+        date_hint: 2026-07-03
         duration_minutes: 45
       - type: Qualifying
-        start: 2026-07-03T14:30
+        start: TBA
+        date_hint: 2026-07-03
         duration_minutes: 30
       - type: Sprint Race
-        start: 2026-07-04T15:35
+        start: TBA
+        date_hint: 2026-07-04
         duration_minutes: 60
       - type: Feature Race
-        start: 2026-07-05T11:35
+        start: TBA
+        date_hint: 2026-07-05
         duration_minutes: 80
 
   - round: 8
@@ -167,16 +195,20 @@ rounds:
     tz: Europe/Brussels
     sessions:
       - type: Practice
-        start: 2026-07-17T10:00
+        start: TBA
+        date_hint: 2026-07-17
         duration_minutes: 45
       - type: Qualifying
-        start: 2026-07-17T14:30
+        start: TBA
+        date_hint: 2026-07-17
         duration_minutes: 30
       - type: Sprint Race
-        start: 2026-07-18T15:35
+        start: TBA
+        date_hint: 2026-07-18
         duration_minutes: 60
       - type: Feature Race
-        start: 2026-07-19T11:35
+        start: TBA
+        date_hint: 2026-07-19
         duration_minutes: 80
 
   - round: 9
@@ -187,16 +219,20 @@ rounds:
     tz: Europe/Budapest
     sessions:
       - type: Practice
-        start: 2026-07-24T10:00
+        start: TBA
+        date_hint: 2026-07-24
         duration_minutes: 45
       - type: Qualifying
-        start: 2026-07-24T14:30
+        start: TBA
+        date_hint: 2026-07-24
         duration_minutes: 30
       - type: Sprint Race
-        start: 2026-07-25T15:35
+        start: TBA
+        date_hint: 2026-07-25
         duration_minutes: 60
       - type: Feature Race
-        start: 2026-07-26T11:35
+        start: TBA
+        date_hint: 2026-07-26
         duration_minutes: 80
 
   - round: 10
@@ -207,16 +243,20 @@ rounds:
     tz: Europe/Rome
     sessions:
       - type: Practice
-        start: 2026-09-04T10:00
+        start: TBA
+        date_hint: 2026-09-04
         duration_minutes: 45
       - type: Qualifying
-        start: 2026-09-04T14:30
+        start: TBA
+        date_hint: 2026-09-04
         duration_minutes: 30
       - type: Sprint Race
-        start: 2026-09-05T15:35
+        start: TBA
+        date_hint: 2026-09-05
         duration_minutes: 60
       - type: Feature Race
-        start: 2026-09-06T11:35
+        start: TBA
+        date_hint: 2026-09-06
         duration_minutes: 80
 
   - round: 11
@@ -227,16 +267,20 @@ rounds:
     tz: Europe/Madrid
     sessions:
       - type: Practice
-        start: 2026-09-11T10:00
+        start: TBA
+        date_hint: 2026-09-11
         duration_minutes: 45
       - type: Qualifying
-        start: 2026-09-11T14:30
+        start: TBA
+        date_hint: 2026-09-11
         duration_minutes: 30
       - type: Sprint Race
-        start: 2026-09-12T15:35
+        start: TBA
+        date_hint: 2026-09-12
         duration_minutes: 60
       - type: Feature Race
-        start: 2026-09-13T11:35
+        start: TBA
+        date_hint: 2026-09-13
         duration_minutes: 80
 
   - round: 12
@@ -247,16 +291,20 @@ rounds:
     tz: Asia/Baku
     sessions:
       - type: Practice
-        start: 2026-09-24T10:00
+        start: TBA
+        date_hint: 2026-09-24
         duration_minutes: 45
       - type: Qualifying
-        start: 2026-09-24T14:30
+        start: TBA
+        date_hint: 2026-09-24
         duration_minutes: 30
       - type: Sprint Race
-        start: 2026-09-25T15:35
+        start: TBA
+        date_hint: 2026-09-25
         duration_minutes: 60
       - type: Feature Race
-        start: 2026-09-26T11:35
+        start: TBA
+        date_hint: 2026-09-26
         duration_minutes: 80
 
   - round: 13
@@ -267,16 +315,20 @@ rounds:
     tz: Asia/Qatar
     sessions:
       - type: Practice
-        start: 2026-11-27T10:00
+        start: TBA
+        date_hint: 2026-11-27
         duration_minutes: 45
       - type: Qualifying
-        start: 2026-11-27T14:30
+        start: TBA
+        date_hint: 2026-11-27
         duration_minutes: 30
       - type: Sprint Race
-        start: 2026-11-28T15:35
+        start: TBA
+        date_hint: 2026-11-28
         duration_minutes: 60
       - type: Feature Race
-        start: 2026-11-29T11:35
+        start: TBA
+        date_hint: 2026-11-29
         duration_minutes: 80
 
   - round: 14
@@ -287,15 +339,19 @@ rounds:
     tz: Asia/Dubai
     sessions:
       - type: Practice
-        start: 2026-12-04T10:00
+        start: TBA
+        date_hint: 2026-12-04
         duration_minutes: 45
       - type: Qualifying
-        start: 2026-12-04T14:30
+        start: TBA
+        date_hint: 2026-12-04
         duration_minutes: 30
       - type: Sprint Race
-        start: 2026-12-05T15:35
+        start: TBA
+        date_hint: 2026-12-05
         duration_minutes: 60
       - type: Feature Race
-        start: 2026-12-06T11:35
+        start: TBA
+        date_hint: 2026-12-06
         duration_minutes: 80
 

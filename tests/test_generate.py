@@ -177,6 +177,31 @@ def test_tba_event_still_includes_watch_line(f1_series, f1_round) -> None:
     assert "Where to watch (US):" in description
 
 
+def test_tba_event_uses_date_hint_for_anchor_when_no_other_times() -> None:
+    """If a round is fully TBA, `date_hint` anchors all-day events correctly."""
+    series = {
+        "series": "IndyCar Series",
+        "slug": "indycar",
+        "calendar_name": "IndyCar 2026",
+        "description": "Test fixture",
+        "timezone_default": "America/New_York",
+    }
+    round_data = {
+        "round": 12,
+        "name": "Music City GP",
+        "short_name": "Nashville GP",
+        "circuit": "Nashville Superspeedway",
+        "location": "Lebanon, Tennessee, USA",
+        "tz": "America/Chicago",
+        "sessions": [
+            {"type": "Race", "start": "TBA", "date_hint": "2026-07-19"},
+        ],
+    }
+    event = g.build_session_event(round_data["sessions"][0], round_data, series)
+    dtstart = event.get("dtstart").dt
+    assert dtstart.isoformat() == "2026-07-19"
+
+
 # Pattern-based privacy guard. Detects *categories* of leaked data without
 # hardcoding any specific person's name/email into a publicly-readable file.
 EMAIL_RE = re.compile(r"[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}")
